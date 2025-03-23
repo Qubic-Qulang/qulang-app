@@ -10,10 +10,7 @@ const pool = new Pool({
 });
 
 export async function GET(request: NextRequest) {
-  const HEADERS = {
-    accept: "application/json",
-    "Content-Type": "application/json",
-  };
+  
 
   const client = await pool.connect();
   try {
