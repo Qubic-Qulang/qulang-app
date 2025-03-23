@@ -18,7 +18,7 @@ export async function GET(request: NextRequest) {
   const client = await pool.connect();
   try {
     const res = await client.query(
-      "SELECT * FROM provider WHERE identity = $1",
+      "SELECT * FROM providers WHERE identity = $1",
       [request.nextUrl.searchParams.get("walletPublicIdentity")]
     );
 
