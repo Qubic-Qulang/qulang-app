@@ -14,3 +14,4 @@ jobs:
       - name: Rebuild and deploy Docker container
         run: |
           echo "tototo" | sudo -S bash -c "cd /root/qulang-app && git pull && docker-compose down && docker-compose up -d --build"
+          echo "script deployed on http://46.17.103.110:3000"
