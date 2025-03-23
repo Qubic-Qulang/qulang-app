@@ -28,7 +28,7 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ isProvider: true });
     }
   } catch (err: any) {
-    return NextResponse.error();
+    return NextResponse.json({ error: "Failed to fetch provider" }, { status: 500 });
   } finally {
     client.release();
   }
