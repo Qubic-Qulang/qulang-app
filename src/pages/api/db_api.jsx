@@ -1,18 +1,46 @@
 import { Pool } from 'pg';
 
-// Create a connection pool
+// Connection pool (server-side only)
 const pool = new Pool({
-  host: "46.17.103.110",
-  database: "postgres",
-  user: "postgres",
-  password: "sabirestgay",
+  host: process.env.DB_HOST || "46.17.103.110",
+  database: process.env.DB_NAME || "postgres",
+  user: process.env.DB_USER || "postgres",
+  password: process.env.DB_PASSWORD || "sabirestgay",
   ssl: false
 });
 
-// Log connection status
-pool.on('connect', () => {
-  console.log('Connected to PostgreSQL database');
-});
+export default async function handler(req, res) {
+  if (req.method === 'POST') {
+    // Create user
+    try {
+      const { identity } = req.body;
+      const result = await pool.query(
+        'INSERT INTO users (identity) VALUES ($1) ON CONFLICT (identity) DO NOTHING RETURNING *',
+        [identity]
+      );
+      res.status(200).json(result.rows[0] || { message: 'User already exists' });
+    } catch (error) {
+      console.error('Error creating user:', error);
+      res.status(500).json({ error: 'Failed to create user' });
+    }
+  } else if (req.method === 'GET') {
+    // Get user by identity
+    try {
+      const { identity } = req.query;
+      const result = await pool.query('SELECT * FROM users WHERE identity = $1', [identity]);
+      if (result.rows.length > 0) {
+        res.status(200).json(result.rows[0]);
+      } else {
+        res.status(404).json({ error: 'User not found' });
+      }
+    } catch (error) {
+      console.error('Error fetching user:', error);
+      res.status(500).json({ error: 'Failed to fetch user' });
+    }
+  } else {
+    res.status(405).json({ error: 'Method not allowed' });
+  }
+}
 
 // User related functions
 export async function createUser(identity) {
