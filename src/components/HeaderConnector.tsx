@@ -3,32 +3,35 @@ import { useHM25 } from "@/contexts/HM25Context";
 import { formatQubicAmount, truncateMiddle } from "@/components/qubic/util";
 import ConnectModal from "@/components/qubic/connect/ConnectModal";
 import React, { useEffect, useState } from "react";
-import { createUser } from "@/api/db_api";
+import { createUser } from "@/pages/api/db_api";
 
 export default function HeaderConnector() {
   const { connected, showConnectModal, toggleConnectModal } = useQubicConnect();
   const { balance, fetchBalance, walletPublicIdentity } = useHM25();
-  const [previousConnectedState, setPreviousConnectedState] = useState(false);
+
+  useEffect(() => {
+    if (connected && walletPublicIdentity) {
+      (async () => {
+        try {
+          const response = await fetch("/api/db_api", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ identity: walletPublicIdentity })
+          });
+          const data = await response.json();
+          console.log("User initialized:", data);
+        } catch (error) {
+          console.error("Error during user initialization:", error);
+        }
+      })();
+    }
+  }, [connected, walletPublicIdentity]);
+
 
   const handleBalanceClick = async (e: any) => {
     e.stopPropagation();
     if (walletPublicIdentity) await fetchBalance(walletPublicIdentity);
   };
-
-  useEffect(() => {
-    if (connected && !previousConnectedState && walletPublicIdentity) {
-      // Register user in database when wallet connects
-      createUser(walletPublicIdentity)
-        .then(user => {
-          console.log('User registered or found:', user);
-        })
-        .catch(error => {
-          console.error('Error registering user:', error);
-        });
-    }
-    
-    setPreviousConnectedState(connected);
-  }, [connected, walletPublicIdentity]);
 
   return (
     <>
@@ -46,7 +49,6 @@ export default function HeaderConnector() {
           )}
         </div>
       </div>
-
       <ConnectModal open={showConnectModal} onClose={toggleConnectModal} />
     </>
   );
