@@ -2,6 +2,7 @@ import React from 'react';
 
 export default function About() {
   return (
+    <div className="flex flex-col">
     <div className="container mx-auto p-8">
       <h1 className="text-4xl font-bold mb-4">About Qubic Marketplace</h1>
       <p className="text-lg mb-6">
@@ -25,6 +26,7 @@ export default function About() {
       <p className="text-lg">
         Join us to test innovative AI models or become a provider. Our platform offers a comprehensive ecosystem where every interaction is secure and verified through blockchain technology.
       </p>
+    </div>
     </div>
   );
 }
