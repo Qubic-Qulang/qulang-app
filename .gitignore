@@ -40,3 +40,4 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 yarn.lock
+src/app/api/isProvider/route.ts

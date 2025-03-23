@@ -18,7 +18,7 @@ export async function GET(request: NextRequest) {
   const client = await pool.connect();
   try {
     const res = await client.query(
-      "SELECT * FROM providers WHERE identity = $1",
+      "SELECT * FROM providers WHERE wallet_identity = $1",
       [request.nextUrl.searchParams.get("walletPublicIdentity")]
     );
 
@@ -28,7 +28,7 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ isProvider: true });
     }
   } catch (err: any) {
-    return NextResponse.json({ error: "Failed to fetch provider" }, { status: 500 });
+    return NextResponse.json({ error: "Failed to fetch provider" + err }, { status: 500 });
   } finally {
     client.release();
   }
