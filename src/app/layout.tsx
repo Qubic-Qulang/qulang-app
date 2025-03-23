@@ -5,7 +5,7 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import {ConfigProvider} from "@/contexts/ConfigContext";
 import {QubicConnectCombinedProvider} from "@/contexts/QubicConnectContext";
-import {HM25Provider} from "@/contexts/HM25Context";
+import {HM25Provider} from "@/contexts/QuLangContext";
 
 const spaceGroteskSans = Space_Grotesk({
   variable: "--font-space-grotesk-sans",

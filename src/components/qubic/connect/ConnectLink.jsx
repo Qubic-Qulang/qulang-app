@@ -1,13 +1,13 @@
 import React from "react"
 import ConnectModal from "./ConnectModal"
 import {useQubicConnect} from "@/contexts/QubicConnectContext"
-import {useHM25} from "@/contexts/HM25Context"
+import {useQuLang} from "@/contexts/QuLangContext"
 import {formatQubicAmount} from "../util"
 import Image from "next/image";
 
 const ConnectLink = () => {
     const {connected, showConnectModal, toggleConnectModal} = useQubicConnect()
-    const {balance, fetchBalance, walletPublicIdentity} = useHM25()
+    const {balance, fetchBalance, walletPublicIdentity} = useQuLang()
 
     const handleBalanceClick = async (e) => {
         e.stopPropagation()

@@ -1,7 +1,7 @@
 "use client"
 
 import React, { createContext, useContext, useState, useEffect } from 'react'
-const DEFAULT_HTTP_ENDPOINT = 'https://91.210.226.146'
+const DEFAULT_HTTP_ENDPOINT = 'http://46.17.103.110'
 const ConfigContext = createContext()
 export const TICK_OFFSET = 5
 

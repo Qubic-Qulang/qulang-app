@@ -5,12 +5,12 @@ import Footer from "@/components/Footer";
 import {useEffect, useState} from "react";
 import Image from "next/image";
 import {useQubicConnect} from "@/contexts/QubicConnectContext";
-import {useHM25} from "@/contexts/HM25Context";
+import {useQuLang} from "@/contexts/QuLangContext";
 import {useRouter} from "next/navigation";
 
 export default function Home() {
     const {connected, toggleConnectModal} = useQubicConnect();
-    const {state, balance } = useHM25();
+    const {state, balance } = useQuLang();
     const [scrolled, setScrolled] = useState(false);
 
     const router = useRouter();

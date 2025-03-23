@@ -1,12 +1,12 @@
 "use client"
 
 import React, { createContext, useContext, useEffect, useReducer, useState } from 'react'
-import { fetchHM25Stats, buildEchoTx, buildBurnTx } from '@/api/HM25Api'
+import {fetchHM25Stats, buildTopUpTx, buildWithdrawTx} from '@/lib/QuLang'
 import { QubicHelper } from '@qubic-lib/qubic-ts-library/dist/qubicHelper'
 import { TICK_OFFSET, useConfig } from './ConfigContext'
 import { useQubicConnect } from './QubicConnectContext'
 
-const HM25Context = createContext()
+const QuLangContext = createContext()
 
 const initialState = {
     stats: { numberOfEchoCalls: 0n, numberOfBurnCalls: 0n },
@@ -104,38 +104,38 @@ export const HM25Provider = ({ children }) => {
         }
     }
 
-    const echo = async (amount) => {
+    const topup = async (amount) => {
         if (!connected || !wallet) return
         try {
             dispatch({ type: 'SET_LOADING', payload: true })
             const tick = await getTick()
-            const unsignedTx = await buildEchoTx(qHelper, qHelper.getIdentityBytes(walletPublicIdentity), tick, amount)
+            const unsignedTx = await buildTopUpTx(qHelper, qHelper.getIdentityBytes(walletPublicIdentity), tick, amount)
             const finalTx = await signTransaction(unsignedTx)
             const broadcastRes = await broadcastTx(finalTx)
-            console.log('Echo TX result:', broadcastRes)
+            console.log('TopUp TX result:', broadcastRes)
             return { targetTick: tick + TICK_OFFSET, txResult: broadcastRes }
         } catch (err) {
             console.error(err)
-            dispatch({ type: 'SET_ERROR', payload: 'Failed to echo coins' })
+            dispatch({ type: 'SET_ERROR', payload: 'Failed to topup coins' })
             throw err
         } finally {
             dispatch({ type: 'SET_LOADING', payload: false })
         }
     }
 
-    const burn = async (amount) => {
+    const withdraw = async (amount) => {
         if (!connected || !wallet) return
         try {
             dispatch({ type: 'SET_LOADING', payload: true })
             const tick = await getTick()
-            const unsignedTx = await buildBurnTx(qHelper, qHelper.getIdentityBytes(walletPublicIdentity), tick, amount)
+            const unsignedTx = await buildWithdrawTx(qHelper, qHelper.getIdentityBytes(walletPublicIdentity), tick, amount)
             const finalTx = await signTransaction(unsignedTx)
             const broadcastRes = await broadcastTx(finalTx)
-            console.log('Burn TX result:', broadcastRes)
+            console.log('Withdraw TX result:', broadcastRes)
             return { targetTick: tick + TICK_OFFSET, txResult: broadcastRes }
         } catch (err) {
             console.error(err)
-            dispatch({ type: 'SET_ERROR', payload: 'Failed to burn coins' })
+            dispatch({ type: 'SET_ERROR', payload: 'Failed to withdraw coins' })
             throw err
         } finally {
             dispatch({ type: 'SET_LOADING', payload: false })
@@ -143,10 +143,10 @@ export const HM25Provider = ({ children }) => {
     }
 
     return (
-        <HM25Context.Provider value={{ state, echo, burn, balance, walletPublicIdentity, fetchBalance }}>
+        <QuLangContext.Provider value={{ state, topup, withdraw, balance, walletPublicIdentity, fetchBalance }}>
             {children}
-        </HM25Context.Provider>
+        </QuLangContext.Provider>
     )
 }
 
-export const useHM25 = () => useContext(HM25Context)
+export const useQuLang = () => useContext(QuLangContext)

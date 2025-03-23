@@ -4,7 +4,7 @@ function Card({children, className, onClick}) {
 
     return (
         <div
-            className={clsx('bg-gray-80 border-gray-70 border-[1px] rounded-[8px]', className)}
+            className={clsx('bg-gray-80 border-gray-50 border-[1] bg-black z-50', className)}
             onClick={onClick ? onClick : null}
         >
             {children}

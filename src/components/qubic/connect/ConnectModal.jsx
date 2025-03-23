@@ -3,7 +3,7 @@ import { QubicVault } from "@qubic-lib/qubic-ts-vault-library"
 import Card from "../ui/Card"
 import QRCode from "qrcode"
 import { useQubicConnect } from "@/contexts/QubicConnectContext"
-import { useHM25 } from "@/contexts/HM25Context"
+import { useQuLang } from "@/contexts/QuLangContext"
 import { truncateMiddle } from "../util"
 import { useWalletConnectContext } from "@/contexts/WalletConnectContext"
 import { MetaMaskContext, MetamaskActions } from "@/contexts/MetamaskContext"
@@ -23,7 +23,7 @@ const ConnectModal = ({ open, onClose }) => {
     const [vaultPassword, setVaultPassword] = useState("")
     const [errorMsgVault, setErrorMsgVault] = useState("")
     const { connect, disconnect, connected } = useQubicConnect()
-    const { walletPublicIdentity } = useHM25()
+    const { walletPublicIdentity } = useQuLang()
     const [copied, setCopied] = useState(false)
 
     // MetaMask
@@ -215,7 +215,7 @@ const ConnectModal = ({ open, onClose }) => {
                     onClick={closeModal}
                 >
                     <Card
-                        className="relative p-6 w-full max-w-md m-auto flex-col bg-black z-50"
+                        className="relative p-6 w-full max-w-md m-auto flex-col"
                         onClick={(e) => e.stopPropagation()}
                     >
                         {/* Header with close button */}
@@ -281,14 +281,14 @@ const ConnectModal = ({ open, onClose }) => {
                                 {!connected && (
                                     <>
                                         <button
-                                            className="bg-primary-40 text-black p-3 rounded-lg w-full flex items-center gap-2 disabled:bg-gray-400 disabled:cursor-not-allowed"
+                                            className="bg-primary-40 text-black p-3 w-full flex items-center gap-2 disabled:bg-gray-400 disabled:cursor-not-allowed"
                                             onClick={() => setSelectedMode("metamask")}
                                         >
                                             <img src="metamask.svg" alt="Metamask Icon" className="h-6 w-6" />
                                             Connect with MetaMask
                                         </button>
                                         <button
-                                            className="bg-primary-40 text-black p-3 rounded-lg w-full flex items-center gap-2"
+                                            className="bg-primary-40 text-black p-3 w-full flex items-center gap-2"
                                             onClick={() => {
                                                 setSelectedMode("walletconnect")
                                                 startWalletConnect()
@@ -303,32 +303,19 @@ const ConnectModal = ({ open, onClose }) => {
                                             <div className="flex-grow border-t border-gray-500"></div>
                                         </div>
                                         <button
-                                            className="bg-primary-40 text-black p-3 rounded-lg w-full"
+                                            className="bg-primary-40 text-black p-3 w-full"
                                             onClick={() => setSelectedMode("private-seed")}
                                         >
                                             Private Seed
                                         </button>
                                         <button
-                                            className="bg-primary-40 text-black p-3 rounded-lg w-full"
+                                            className="bg-primary-40 text-black p-3 w-full"
                                             onClick={() => setSelectedMode("vault-file")}
                                         >
                                             Vault File
                                         </button>
                                     </>
                                 )}
-                                <div className="my-16 mt-16 mb-16 flex w-full items-center justify-center">
-                                    <div className="flex-grow border-t border-gray-500"></div>
-                                    <span className="px-4 text-sm text-gray-300">Experimental️</span>
-                                    <div className="flex-grow border-t border-gray-500"></div>
-                                </div>
-                                <div className="mt-4">
-                                    <button
-                                        className="bg-primary-40 p-3 rounded-lg w-full text-black"
-                                        onClick={() => setSelectedMode("server-config")}
-                                    >
-                                        Connect to Server
-                                    </button>
-                                </div>
                             </div>
                         )}
 
