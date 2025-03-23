@@ -14,7 +14,7 @@ export async function GET(request: NextRequest) {
   try {
     const res = await client.query(
       "SELECT * FROM providers WHERE wallet_identity = $1",
-      [request.nextUrl.searchParams.get("walletPublicIdentity")]
+      [request.nextUrl.searchParams.get("ID")]
     );
 
     if (res.rows.length === 0) {
@@ -25,7 +25,7 @@ export async function GET(request: NextRequest) {
            VALUES ($1, $2)`,
           [
             request.nextUrl.searchParams.get("endpoint_inference"),
-            request.nextUrl.searchParams.get("walletPublicIdentity"),
+            request.nextUrl.searchParams.get("ID"),
           ]
         );
         return NextResponse.json({ worked: true });
@@ -42,7 +42,7 @@ export async function GET(request: NextRequest) {
          WHERE wallet_identity = $2`,
         [
           request.nextUrl.searchParams.get("endpoint_inference"),
-          request.nextUrl.searchParams.get("walletPublicIdentity"),
+          request.nextUrl.searchParams.get("ID"),
         ]
       );
       return NextResponse.json({ worked: true });

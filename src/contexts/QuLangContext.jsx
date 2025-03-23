@@ -1,7 +1,13 @@
 "use client"
 
 import React, { createContext, useContext, useEffect, useReducer, useState } from 'react'
-import {fetchHM25Stats, buildTopUpTx, buildWithdrawTx} from '@/lib/QuLang'
+import {
+    buildTopUpTx,
+    buildWithdrawTx,
+    buildUpdateProviderTx,
+    buildProcessRequestTx,
+    fetchUserBalance
+} from '@/lib/QuLang'
 import { QubicHelper } from '@qubic-lib/qubic-ts-library/dist/qubicHelper'
 import { TICK_OFFSET, useConfig } from './ConfigContext'
 import { useQubicConnect } from './QubicConnectContext'
@@ -9,15 +15,15 @@ import { useQubicConnect } from './QubicConnectContext'
 const QuLangContext = createContext()
 
 const initialState = {
-    stats: { numberOfEchoCalls: 0n, numberOfBurnCalls: 0n },
+    data: { balance: 0n },
     loading: false,
     error: null,
 }
 
 function hm25Reducer(state, action) {
     switch (action.type) {
-        case 'SET_STATS':
-            return { ...state, stats: action.payload }
+        case 'SET_QULANG_DATA':
+            return { ...state, data: action.payload }
         case 'SET_LOADING':
             return { ...state, loading: action.payload }
         case 'SET_ERROR':
@@ -36,23 +42,23 @@ export const HM25Provider = ({ children }) => {
     const [walletPublicIdentity, setWalletPublicIdentity] = useState('')
 
     useEffect(() => {
-        if (!httpEndpoint) return
-        const fetchStats = async () => {
+        if (!httpEndpoint || !walletPublicIdentity) return
+        const fetchQuLangBalance = async () => {
             try {
                 dispatch({ type: 'SET_LOADING', payload: true })
-                const stats = await fetchHM25Stats(httpEndpoint)
-                dispatch({ type: 'SET_STATS', payload: stats })
+                const quLangData = await fetchUserBalance(httpEndpoint, qHelper, walletPublicIdentity)
+                dispatch({ type: 'SET_QULANG_DATA', payload: quLangData })
             } catch (err) {
                 console.error(err)
-                dispatch({ type: 'SET_ERROR', payload: 'Failed to load stats' })
+                dispatch({ type: 'SET_ERROR', payload: 'Failed to load qulang balance' })
             } finally {
                 dispatch({ type: 'SET_LOADING', payload: false })
             }
         }
-        fetchStats() // Fetch immediately on mount or httpEndpoint change
-        const intervalId = setInterval(fetchStats, 5000) // Fetch every 5 seconds
+        fetchQuLangBalance() // Fetch immediately on mount or httpEndpoint change
+        const intervalId = setInterval(fetchQuLangBalance, 5000) // Fetch every 5 seconds
         return () => clearInterval(intervalId) // Cleanup interval on unmount or httpEndpoint change
-    }, [httpEndpoint])
+    }, [httpEndpoint, walletPublicIdentity])
 
     useEffect(() => {
         const initIdentityAndBalance = async () => {
@@ -116,7 +122,7 @@ export const HM25Provider = ({ children }) => {
             return { targetTick: tick + TICK_OFFSET, txResult: broadcastRes }
         } catch (err) {
             console.error(err)
-            dispatch({ type: 'SET_ERROR', payload: 'Failed to topup coins' })
+            dispatch({ type: 'SET_ERROR', payload: 'Failed to top up coins' })
             throw err
         } finally {
             dispatch({ type: 'SET_LOADING', payload: false })
@@ -142,8 +148,46 @@ export const HM25Provider = ({ children }) => {
         }
     }
 
+    const updateProvider = async (priceInput, priceOutput, burnRate) => {
+        if (!connected || !wallet) return
+        try {
+            dispatch({ type: 'SET_LOADING', payload: true })
+            const tick = await getTick()
+            const unsignedTx = await buildUpdateProviderTx(qHelper, qHelper.getIdentityBytes(walletPublicIdentity), tick, priceInput, priceOutput, burnRate)
+            const finalTx = await signTransaction(unsignedTx)
+            const broadcastRes = await broadcastTx(finalTx)
+            console.log('Update provider TX result:', broadcastRes)
+            return { targetTick: tick + TICK_OFFSET, txResult: broadcastRes }
+        } catch (err) {
+            console.error(err)
+            dispatch({ type: 'SET_ERROR', payload: 'Failed to update provider' })
+            throw err
+        } finally {
+            dispatch({ type: 'SET_LOADING', payload: false })
+        }
+    }
+
+    const processRequest = async (provider_id, user_id, priceOutput, token_input, token_output) => {
+        if (!connected || !wallet) return
+        try {
+            dispatch({ type: 'SET_LOADING', payload: true })
+            const tick = await getTick()
+            const unsignedTx = await buildProcessRequestTx(qHelper, qHelper.getIdentityBytes(walletPublicIdentity), tick, provider_id, user_id, token_input, token_output)
+            const finalTx = await signTransaction(unsignedTx)
+            const broadcastRes = await broadcastTx(finalTx)
+            console.log('Process Request TX result:', broadcastRes)
+            return { targetTick: tick + TICK_OFFSET, txResult: broadcastRes }
+        } catch (err) {
+            console.error(err)
+            dispatch({ type: 'SET_ERROR', payload: 'Failed to process request' })
+            throw err
+        } finally {
+            dispatch({ type: 'SET_LOADING', payload: false })
+        }
+    }
+
     return (
-        <QuLangContext.Provider value={{ state, topup, withdraw, balance, walletPublicIdentity, fetchBalance }}>
+        <QuLangContext.Provider value={{ state, topup, withdraw, updateProvider, processRequest, balance, walletPublicIdentity, fetchBalance }}>
             {children}
         </QuLangContext.Provider>
     )

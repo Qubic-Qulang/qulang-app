@@ -19,28 +19,6 @@ export default function Footer() {
                 <span className="text-gray-50 text-12 font-space pl-10">
                         {'\u00A9'} {new Date().getFullYear()} QuLang
                     </span>
-                <div className="flex items-center gap-2">
-                    <a style={{textDecoration: 'none', color: 'white'}}
-                       className="text-12 font-space"
-                       target='_blank' rel="noreferrer"
-                       href="https://qubic.org/Terms-of-service">
-                        Terms of service
-                    </a>
-                    <span className="text-gray-50">•</span>
-                    <a style={{textDecoration: 'none', color: 'white'}}
-                       className="text-12 font-space"
-                       target='_blank' rel="noreferrer"
-                       href="https://qubic.org/Privacy-policy">
-                        Privacy Policy
-                    </a>
-                    <span className="text-gray-50">•</span>
-                    <a style={{textDecoration: 'none', color: 'white'}}
-                       className="text-12 font-space"
-                       target='_blank' rel="noreferrer"
-                       href="https://status.qubic.li/">
-                        Network Status
-                    </a>
-                </div>
                 <span className='text-gray-50 text-12 cursor-pointer'>
                         Version {pkg.version}
                     </span>

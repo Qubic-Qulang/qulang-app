@@ -16,13 +16,13 @@ export async function GET(request: NextRequest) {
   try {
     const res = await client.query(
       "SELECT * FROM providers WHERE wallet_identity = $1",
-      [request.nextUrl.searchParams.get("walletPublicIdentity")]
+      [request.nextUrl.searchParams.get("ID")]
     );
 
     if (res.rows.length === 0) {
       return NextResponse.json({ isProvider: false });
     } else {
-      return NextResponse.json({ isProvider: true });
+      return NextResponse.json({ isProvider: true, endpoint: res.rows[0]["endpoint_inference"] });
     }
   } catch (err: any) {
     return NextResponse.json({ error: "Failed to fetch provider" + err }, { status: 500 });

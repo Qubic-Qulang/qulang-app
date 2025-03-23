@@ -63,7 +63,6 @@ const ConfirmTxModal = ({ tx, open, onClose, onConfirm, onTransactionComplete })
                     <Card className="relative p-8 w-full max-w-md m-auto flex-col flex" onClick={(e) => e.stopPropagation()}>
                         <div className="flex justify-between items-center">
                             <div className="text-2xl text-white">QuLang <span className="text-primary-40">Transaction</span></div>
-                            <button onClick={onClose} className="text-2xl text-white">X</button>
                         </div>
                         <div className="flex flex-col gap-4 mt-4">
                             {confirmedTx && (
@@ -71,7 +70,7 @@ const ConfirmTxModal = ({ tx, open, onClose, onConfirm, onTransactionComplete })
                                     <p className="text-white">Current Tick: {tick} / {confirmedTx.targetTick}</p>
                                     <div className="w-full bg-gray-200 h-2.5 dark:bg-gray-700">
                                         <div
-                                            className="bg-blue-600 h-2.5"
+                                            className="bg-primary-50 h-2.5"
                                             style={{
                                                 width: tick
                                                     ? `${Math.min(Math.max(((tick - initialTick) / (confirmedTx.targetTick - initialTick)) * 100, 0), 100)}%`
@@ -89,7 +88,7 @@ const ConfirmTxModal = ({ tx, open, onClose, onConfirm, onTransactionComplete })
                                     <p className="text-white">Action: {tx.title}</p>
                                     <p className="text-white">Amount: {tx.amount} QUBIC</p>
                                     <button
-                                        className="bg-primary-40 p-4 disabled:bg-gray-400 disabled:cursor-not-allowed text-black"
+                                        className="bg-primary-50 hover:bg-primary-70 transition-all duration-100 cursor-pointer p-4 disabled:bg-gray-400 disabled:cursor-not-allowed text-black"
                                         onClick={async () => {
                                             const confirmed = await onConfirm()
                                             startTickFetchInterval(confirmed)
@@ -100,7 +99,7 @@ const ConfirmTxModal = ({ tx, open, onClose, onConfirm, onTransactionComplete })
                                     </button>
                                 </>
                             )}
-                            <button className="bg-gray-50 p-4 text-black" onClick={onClose}>
+                            <button className="bg-gray-50 p-4 hover:bg-gray-300 cursor-pointer transition-all duration-100 text-black" onClick={onClose}>
                                 Close
                             </button>
                         </div>

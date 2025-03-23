@@ -9,6 +9,7 @@ import { useWalletConnectContext } from "@/contexts/WalletConnectContext"
 import { MetaMaskContext, MetamaskActions } from "@/contexts/MetamaskContext"
 import { useConfig } from "@/contexts/ConfigContext"
 import Image from "next/image";
+import {useRouter} from "next/navigation";
 
 const ConnectModal = ({ open, onClose }) => {
     const [selectedMode, setSelectedMode] = useState("none")
@@ -23,11 +24,13 @@ const ConnectModal = ({ open, onClose }) => {
     const [vaultPassword, setVaultPassword] = useState("")
     const [errorMsgVault, setErrorMsgVault] = useState("")
     const { connect, disconnect, connected } = useQubicConnect()
-    const { walletPublicIdentity } = useQuLang()
+    const { walletPublicIdentity, balance, state } = useQuLang()
     const [copied, setCopied] = useState(false)
 
     // MetaMask
     const [mmState, mmDispatch, { connectSnap, getSnap }] = useContext(MetaMaskContext)
+
+    const router = useRouter()
 
     // For wallet connect
     const { connect: wcConnect, isConnected: wcIsConnected, requestAccounts, disconnect: wcDisconnect } = useWalletConnectContext()
@@ -228,9 +231,9 @@ const ConnectModal = ({ open, onClose }) => {
                         {selectedMode === "none" && (
                             <div className="space-y-4 text-white">
                                 {connected && (
-                                    <div className="space-y-4">
-                                        <p className="font-bold">Connected as:</p>
-                                        <div className="flex items-center space-x-2">
+                                    <div className="mt-5">
+                                        <p>Connected as:</p>
+                                        <div className="flex items-center space-x-2 mb-5">
                                             <span className="font-mono">{truncateMiddle(walletPublicIdentity, 40)}</span>
                                             <button
                                                 onClick={handleCopyClick}
@@ -267,28 +270,47 @@ const ConnectModal = ({ open, onClose }) => {
                                                 )}
                                             </button>
                                         </div>
+                                        <p>QuLang balance:</p>
+                                        <div className="flex items-center space-x-2 mb-5">
+                                            <span className="font-mono">{state.data.balance}</span>
+                                            <img src="qubic-coin.svg" />
+                                        </div>
+                                        <p>Qubic blockchain balance:</p>
+                                        <div className="flex items-center space-x-2 mb-8">
+                                            <span className="font-mono">{balance}</span>
+                                            <img src="qubic-coin.svg" />
+                                        </div>
                                         <button
-                                            className="bg-primary-40 text-black p-4 rounded-lg w-full"
+                                            className="bg-primary-50 hover:bg-primary-70 transition-all duration-100 text-black p-4 w-full cursor-pointer"
+                                            onClick={() => {
+                                                router.push("/account")
+                                                closeModal()
+                                            }}
+                                        >
+                                            Top up / Withdraw
+                                        </button>
+                                        <button
+                                            className="hover:text-black hover:bg-primary-70 transition-all duration-100 text-white p-4 mt-20 w-full cursor-pointer"
                                         onClick={() => {
                                             disconnect()
                                             closeModal()
                                         }}
                                         >
-                                            Lock Wallet
+                                            Logout
                                         </button>
                                     </div>
                                 )}
                                 {!connected && (
                                     <>
                                         <button
-                                            className="bg-primary-40 text-black p-3 w-full flex items-center gap-2 disabled:bg-gray-400 disabled:cursor-not-allowed"
+                                            className="bg-primary-50 hover:bg-primary-70 transition-all duration-100 cursor-pointer text-black p-3 w-full flex items-center gap-2 disabled:bg-gray-400 disabled:cursor-not-allowed"
                                             onClick={() => setSelectedMode("metamask")}
                                         >
                                             <img src="metamask.svg" alt="Metamask Icon" className="h-6 w-6" />
                                             Connect with MetaMask
                                         </button>
                                         <button
-                                            className="bg-primary-40 text-black p-3 w-full flex items-center gap-2"
+                                            className="bg-primary-50 hover:bg-primary-70 transition-all duration-100 cursor-pointer text-black p-3 w-full flex items-center gap-2"
                                             onClick={() => {
                                                 setSelectedMode("walletconnect")
                                                 startWalletConnect()
@@ -303,13 +325,13 @@ const ConnectModal = ({ open, onClose }) => {
                                             <div className="flex-grow border-t border-gray-500"></div>
                                         </div>
                                         <button
-                                            className="bg-primary-40 text-black p-3 w-full"
+                                            className="bg-primary-50 hover:bg-primary-70 transition-all duration-100 text-black cursor-pointer p-3 w-full"
                                             onClick={() => setSelectedMode("private-seed")}
                                         >
                                             Private Seed
                                         </button>
                                         <button
-                                            className="bg-primary-40 text-black p-3 w-full"
+                                            className="bg-primary-50 hover:bg-primary-70 transition-all duration-100 text-black cursor-pointer p-3 w-full"
                                             onClick={() => setSelectedMode("vault-file")}
                                         >
                                             Vault File
@@ -324,20 +346,20 @@ const ConnectModal = ({ open, onClose }) => {
                                 <p>Enter your 55-char private seed:</p>
                                 <input
                                     type="text"
-                                    className="w-full p-3 bg-gray-700 rounded"
+                                    className="w-full p-3 bg-gray-700"
                                     value={privateSeed}
                                     onChange={(e) => handleSeedChange(e.target.value)}
                                 />
                                 {errorMsgSeed && <p className="text-red-500">{errorMsgSeed}</p>}
                                 <div className="grid grid-cols-2 gap-4 mt-4">
                                     <button
-                                        className="bg-gray-600 p-3 rounded"
+                                        className="bg-gray-600 hover:bg-gray-700 cursor-pointer transition-all duration-100 p-3"
                                         onClick={() => setSelectedMode("none")}
                                     >
                                         Cancel
                                     </button>
                                     <button
-                                        className="bg-primary-40 p-3 text-black rounded"
+                                        className="bg-primary-50 hover:bg-primary-70 transition-all duration-100 cursor-pointer p-3 text-black"
                                         onClick={connectPrivateSeed}
                                         disabled={!!errorMsgSeed}
                                     >
@@ -353,25 +375,25 @@ const ConnectModal = ({ open, onClose }) => {
                                 <input
                                     type="file"
                                     onChange={handleVaultFileChange}
-                                    className="w-full p-3 bg-gray-700 rounded"
+                                    className="w-full p-3 bg-gray-700"
                                 />
                                 <p>Enter vault password</p>
                                 <input
                                     type="password"
-                                    className="w-full p-3 bg-gray-700 rounded"
+                                    className="w-full p-3 bg-gray-700"
                                     value={vaultPassword}
                                     onChange={(e) => setVaultPassword(e.target.value)}
                                 />
                                 {errorMsgVault && <p className="text-red-500">{errorMsgVault}</p>}
                                 <div className="grid grid-cols-2 gap-4 mt-4">
                                     <button
-                                        className="bg-gray-600 p-3 rounded"
+                                        className="bg-gray-600 p-3"
                                         onClick={() => setSelectedVaultFileState()}
                                     >
                                         Cancel
                                     </button>
                                     <button
-                                        className="bg-primary-40 p-3 text-black rounded"
+                                        className="bg-primary-50 hover:bg-primary-70 transition-all duration-100  cursor-pointer p-3 text-black"
                                         onClick={connectVaultFile}
                                     >
                                         Unlock
@@ -384,13 +406,13 @@ const ConnectModal = ({ open, onClose }) => {
                             <div className="text-white space-y-4">
                                 <p>Connect via MetaMask Snap for Qubic</p>
                                 <button
-                                    className="bg-primary-40 p-3 text-black rounded w-full"
+                                    className="bg-primary-40 p-3 text-black w-full"
                                     onClick={() => connectMetamask()}
                                 >
                                     Install/Use Qubic Snap
                                 </button>
                                 <button
-                                    className="mt-2 bg-gray-600 p-3 rounded w-full"
+                                    className="mt-2 bg-gray-600 p-3 w-full"
                                     onClick={() => setSelectedMode("none")}
                                 >
                                     Cancel
@@ -426,7 +448,7 @@ const ConnectModal = ({ open, onClose }) => {
 
                                         {wcIsConnected ? (
                                             <button
-                                                className="bg-primary-40 p-3 text-black rounded w-full"
+                                                className="bg-primary-40 p-3 text-black w-full"
                                                 onClick={connectWalletConnect}
                                             >
                                                 Continue
@@ -443,7 +465,7 @@ const ConnectModal = ({ open, onClose }) => {
                                     </>
                                 )}
                                 <button
-                                    className="mt-2 bg-gray-600 p-3 rounded w-full"
+                                    className="mt-2 bg-gray-600 p-3 w-full"
                                     onClick={() => setSelectedMode("none")}
                                 >
                                     Cancel
@@ -456,7 +478,7 @@ const ConnectModal = ({ open, onClose }) => {
                                 <h3 className="text-xl font-bold">Server Configuration</h3>
                                 {connectedToCustomServer ? (
                                     <button
-                                        className="bg-primary-40 p-3 text-black rounded w-full"
+                                        className="bg-primary-40 p-3 text-black w-full"
                                         onClick={() => {
                                             resetEndpoints()
                                             setSelectedMode("none")
@@ -471,7 +493,7 @@ const ConnectModal = ({ open, onClose }) => {
                                         <label className="block mb-2">HTTP Endpoint:</label>
                                         <input
                                             type="text"
-                                            className="w-full p-3 bg-gray-700 rounded"
+                                            className="w-full p-3 bg-gray-700"
                                             placeholder="Enter HTTP Endpoint"
                                             value={httpEndpointInput}
                                             onChange={(e) => setHttpEndpointInput(e.target.value)}
@@ -479,13 +501,13 @@ const ConnectModal = ({ open, onClose }) => {
                                         {errorMsg && <p className="text-red-500 mt-2">{errorMsg}</p>}
                                         <div className="grid grid-cols-2 gap-4 mt-4">
                                             <button
-                                                className="bg-gray-600 p-3 rounded"
+                                                className="bg-gray-600 p-3"
                                                 onClick={() => setSelectedMode("none")}
                                             >
                                                 Cancel
                                             </button>
                                             <button
-                                                className="bg-primary-40 p-3 text-black rounded"
+                                                className="bg-primary-40 p-3 text-black"
                                                 onClick={() => {
                                                     if (!httpEndpointInput) {
                                                         setErrorMsg("Please enter an HTTP Endpoint.")

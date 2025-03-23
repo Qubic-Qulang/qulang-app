@@ -76,7 +76,7 @@ const InputNumbers = forwardRef<InputNumbersRef, InputNumbersProps>(({
             <input
                 id={id}
                 type="text"
-                className={`w-full p-4 bg-gray-80 border border-gray-70 text-white rounded-lg placeholder-gray-500 ${error && 'border-red-500'}`}
+                className={`w-full p-4 bg-gray-80 border border-gray-70 text-white placeholder-gray-500 ${error && 'border-red-500'}`}
                 placeholder={placeholder}
                 value={value}
                 onChange={handleChange}

@@ -1,150 +1,165 @@
 "use client";
 
-import { useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useQuLang } from "@/contexts/QuLangContext";
-import FormHead from "@/components/qubic/ui/FormHead";
-import InputNumbers, {InputNumbersRef} from "@/components/qubic/ui/InputNumbers";
 import { useQubicConnect } from "@/contexts/QubicConnectContext";
+import { useRouter } from "next/navigation";
+import InputNumbers from "@/components/qubic/ui/InputNumbers";
 import ConfirmTxModal from "@/components/qubic/connect/ConfirmTxModal";
 
-export default function GetUser() {
-  const [response, setResponse] = useState("à run");
-  const [id, setId] = useState("");
-  const { topup, withdraw, balance } = useQuLang();
+export default function UpdateProvider() {
+  const { updateProvider, walletPublicIdentity } = useQuLang();
+  const { connected, toggleConnectModal } = useQubicConnect();
+  const router = useRouter();
 
-  // Top up states
-  const topupRef = useRef<InputNumbersRef>(null);
-  const [amount, setAmount] = useState("");
+  const [isProvider, setIsProvider] = useState(false);
+  const [loaded, setLoaded] = useState(false);
+
+  // Etats pour les champs du formulaire
+  const [endpointUrl, setEndpointUrl] = useState("");
+  const [priceInput, setPriceInput] = useState("");
+  const [priceOutput, setPriceOutput] = useState("");
+  const [burnRate, setBurnRate] = useState("");
+
+  // Etat pour la modale de confirmation
   const [showConfirmModal, setShowConfirmModal] = useState(false);
 
-  // Withdraw states
-  const withdrawRef = useRef<InputNumbersRef>(null);
-  const [withdrawAmount, setWithdrawAmount] = useState("");
-  const [showWithdrawConfirmModal, setShowWithdrawConfirmModal] =
-    useState(false);
+  useEffect(() => {
+    async function fetchData() {
+      if (!walletPublicIdentity) return;
+      try {
+        const res = await fetch(`/api/getProvider?ID=${walletPublicIdentity}`);
+        const data = await res.json();
+        setLoaded(true);
+        setIsProvider(data.isProvider);
+        console.log(data);
+      } catch (error) {
+        // Gestion d'erreur si besoin
+      }
+    }
+    fetchData();
+  }, [walletPublicIdentity]);
 
-  // @ts-ignore
-  const handleValidate = () => topupRef.current.validate();
-  const handleSubmit = async () => {
-    if (!handleValidate()) return;
+  // Quand on clique sur "Update Provider", on affiche la modale de confirmation
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Ici tu pourrais ajouter de la validation
     setShowConfirmModal(true);
   };
-  const confirmTopUp = async () => await topup(amount);
+
+  // La fonction appelée après confirmation
+  const confirmUpdate = async () => {
+    try {
+      // Appel de updateProvider pour les paramètres liés aux prix et burn rate
+      await updateProvider(Number(priceInput), Number(priceOutput), Number(burnRate));
+      // Appel séparé pour l'endpoint inference
+      const res = await fetch(
+          `/api/updateProvider?ID=${walletPublicIdentity}&endpoint_inference=${endpointUrl}`
+      );
+      console.log("Mise à jour effectuée :", res);
+      handleTransactionComplete();
+    } catch (error) {
+      console.error("Erreur lors de la mise à jour du provider :", error);
+    }
+  };
+
   const handleTransactionComplete = () => {
     setShowConfirmModal(false);
+    router.push("/");
   };
-
-  // @ts-ignore
-  const handleWithdrawValidate = () => withdrawRef.current.validate();
-  const handleWithdrawSubmit = async () => {
-    if (!handleWithdrawValidate()) return;
-    setShowWithdrawConfirmModal(true);
-  };
-  const confirmWithdraw = async () => await withdraw(withdrawAmount);
-  const handleWithdrawTransactionComplete = () => {
-    setShowWithdrawConfirmModal(false);
-  };
-
-  async function query() {
-    if (!id) return;
-
-    try {
-      const res = await fetch(`/api/getUser?ID=${id}`);
-      const data = await res.json();
-      setResponse(`The user has ${data.balance} coins.`);
-    } catch (error) {
-      setResponse("Error fetching data");
-    }
-  }
 
   return (
-    <div className="max-w-md mx-auto mt-40 text-white">
-      <h1>Get user balance</h1>
-      <input
-        type="text"
-        placeholder="Enter Identity"
-        value={id}
-        onChange={(e) => setId(e.target.value)}
-        className="p-2 mb-4 w-full z-10"
-      />
-      <button className="bg-primary-50 text-black p-5 w-full" onClick={query}>
-        Get balance
-      </button>
-      <p className="mt-4">{response}</p>
-
-      {/* TopUp Section */}
-      <div className="max-w-md mx-auto mt-[90px] text-white">
-        <div className="space-y-4">
-          <InputNumbers
-            id="topUpAmount"
-            ref={topupRef}
-            labelComponent={
-              <span className="text-white">Amount to Top up</span>
-            }
-            minLimit={1}
-            onChange={setAmount}
-            placeholder="0"
-          />
-          <button
-            className="bg-primary-40 text-black w-full p-3 rounded disabled:bg-gray-400 disabled:cursor-not-allowed"
-            onClick={handleSubmit}
-            disabled={balance <= 0 || Number(amount) > Number(balance)}
-            title={
-              balance <= 0
-                ? "Insufficient balance."
-                : Number(amount) > Number(balance)
-                ? "Amount exceeds balance."
-                : ""
-            }
-          >
-            Top up!
-          </button>
+      <div className="min-h-screen">
+        {/* Banner */}
+        <div className="h-24"></div>
+        <div className="relative h-56 w-full">
+          <img src="bg.png" alt="Banner" className="object-cover w-full h-full" />
+          <div className="absolute inset-0 flex items-center justify-center">
+            <h1 className="text-white text-3xl font-bold">
+              {isProvider ? "Edit Provider Settings" : "Add Provider Settings"}
+            </h1>
+          </div>
         </div>
-        <ConfirmTxModal
-          open={showConfirmModal}
-          onClose={() => setShowConfirmModal(false)}
-          tx={{ title: "Top up Coins", amount }}
-          onConfirm={confirmTopUp}
-          onTransactionComplete={handleTransactionComplete}
-        />
+        {!connected ? (
+            <div className="max-w-3xl mx-auto p-4">
+              <div className="flex flex-col gap-2 justify-around items-center text-white my-8">
+                Please connect wallet in order to setup your provider profile!
+                <button
+                    className="bg-primary-50 hover:bg-primary-70 transition-all duration-100 cursor-pointer text-black w-full p-3"
+                    onClick={toggleConnectModal}
+                >
+                  Connect wallet
+                </button>
+              </div>
+            </div>
+        ) : (
+            <div className="max-w-6xl mx-auto p-4">
+              {!loaded ? (
+                  <p>Please wait...</p>
+              ) : (
+                  <div className="max-w-md mx-auto text-white">
+                    <form onSubmit={handleSubmit} className="mt-6 space-y-4">
+                      <div>
+                        <label className="block mb-1">Endpoint URL:</label>
+                        <input
+                            type="text"
+                            value={endpointUrl}
+                            onChange={(e) => setEndpointUrl(e.target.value)}
+                            placeholder="Enter endpoint URL"
+                            className="w-full p-4 bg-gray-80 border border-gray-70 text-white placeholder-gray-500"
+                        />
+                      </div>
+                      <div>
+                        <label className="block mb-1">Price per input token:</label>
+                        <InputNumbers
+                            type="number"
+                            value={priceInput}
+                            onChange={(e) => setPriceInput(e.target.value)}
+                            placeholder="Price per input token"
+                            className="w-full p-4 bg-gray-80 border border-gray-70 text-white placeholder-gray-500"
+                        />
+                      </div>
+                      <div>
+                        <label className="block mb-1">Price per output token:</label>
+                        <InputNumbers
+                            type="number"
+                            value={priceOutput}
+                            onChange={(e) => setPriceOutput(e.target.value)}
+                            placeholder="Price per output token"
+                            className="w-full p-4 bg-gray-80 border border-gray-70 text-white placeholder-gray-500"
+                        />
+                      </div>
+                      <div>
+                        <label className="block mb-1">Burn rate (int / 10000):</label>
+                        <InputNumbers
+                            type="number"
+                            value={burnRate}
+                            onChange={(e) => setBurnRate(e.target.value)}
+                            placeholder="Burn rate (int / 10000)"
+                            className="w-full p-4 bg-gray-80 border border-gray-70 text-white placeholder-gray-500"
+                        />
+                      </div>
+                      <button
+                          type="submit"
+                          className="bg-primary-50 hover:bg-primary-70 transition-all duration-100 cursor-pointer text-black w-full p-3 disabled:bg-gray-400 disabled:cursor-not-allowed"
+                      >
+                        Update Provider
+                      </button>
+                    </form>
+                    <ConfirmTxModal
+                        open={showConfirmModal}
+                        onClose={() => setShowConfirmModal(false)}
+                        tx={{
+                          title: "Update Provider Settings",
+                          details: `Price per input: ${priceInput}, Price per output: ${priceOutput}, Burn rate: ${burnRate}`
+                        }}
+                        onConfirm={confirmUpdate}
+                        onTransactionComplete={handleTransactionComplete}
+                    />
+                  </div>
+              )}
+            </div>
+        )}
       </div>
-
-      {/* Withdraw Section */}
-      <div className="max-w-md mx-auto mt-10 text-white">
-        <div className="space-y-4">
-          <InputNumbers
-            id="withdrawAmount"
-            ref={withdrawRef}
-            labelComponent={
-              <span className="text-white">Amount to Withdraw</span>
-            }
-            minLimit={1}
-            onChange={setWithdrawAmount}
-            placeholder="0"
-          />
-          <button
-            className="bg-primary-40 text-black w-full p-3 rounded disabled:bg-gray-400 disabled:cursor-not-allowed"
-            onClick={handleWithdrawSubmit}
-            disabled={balance <= 0 || Number(withdrawAmount) > Number(balance)}
-            title={
-              balance <= 0
-                ? "Insufficient balance."
-                : Number(withdrawAmount) > Number(balance)
-                ? "Amount exceeds balance."
-                : ""
-            }
-          >
-            Withdraw!
-          </button>
-        </div>
-        <ConfirmTxModal
-          open={showWithdrawConfirmModal}
-          onClose={() => setShowWithdrawConfirmModal(false)}
-          tx={{ title: "Withdraw Coins", amount: withdrawAmount }}
-          onConfirm={confirmWithdraw}
-          onTransactionComplete={handleWithdrawTransactionComplete}
-        />
-      </div>
-    </div>
   );
 }
