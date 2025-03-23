@@ -28,6 +28,7 @@ export async function GET(request: NextRequest) {
             request.nextUrl.searchParams.get("walletPublicIdentity"),
           ]
         );
+        return NextResponse.json({ worked: true });
       } catch (error) {
         return NextResponse.json(
           { error: "Failed to insert provider" + error },
@@ -44,6 +45,7 @@ export async function GET(request: NextRequest) {
           request.nextUrl.searchParams.get("walletPublicIdentity"),
         ]
       );
+      return NextResponse.json({ worked: true });
     }
   } catch (err: any) {
     return NextResponse.json(
