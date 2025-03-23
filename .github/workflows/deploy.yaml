@@ -13,4 +13,4 @@ jobs:
         uses: actions/checkout@v4
       - name: Rebuild and deploy Docker container
         run: |
-          echo "tototo" | sudo -S bash -c "cd /root/qulang-app && docker-compose down && docker-compose up -d --build"
+          echo "tototo" | sudo -S bash -c "cd /root/qulang-app && git pull && docker-compose down && docker-compose up -d --build"
