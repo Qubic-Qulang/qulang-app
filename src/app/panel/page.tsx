@@ -3,7 +3,7 @@
 import { useRef, useState } from "react";
 import { useQuLang } from "@/contexts/QuLangContext";
 import FormHead from "@/components/qubic/ui/FormHead";
-import InputNumbers from "@/components/qubic/ui/InputNumbers";
+import InputNumbers, {InputNumbersRef} from "@/components/qubic/ui/InputNumbers";
 import { useQubicConnect } from "@/contexts/QubicConnectContext";
 import ConfirmTxModal from "@/components/qubic/connect/ConfirmTxModal";
 
@@ -13,12 +13,12 @@ export default function GetUser() {
   const { topup, withdraw, balance } = useQuLang();
 
   // Top up states
-  const topupRef = useRef<typeof InputNumbers>(null);
+  const topupRef = useRef<InputNumbersRef>(null);
   const [amount, setAmount] = useState("");
   const [showConfirmModal, setShowConfirmModal] = useState(false);
 
   // Withdraw states
-  const withdrawRef = useRef<typeof InputNumbers>(null);
+  const withdrawRef = useRef<InputNumbersRef>(null);
   const [withdrawAmount, setWithdrawAmount] = useState("");
   const [showWithdrawConfirmModal, setShowWithdrawConfirmModal] =
     useState(false);
