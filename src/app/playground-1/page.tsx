@@ -6,7 +6,7 @@ import { Send } from "lucide-react"
 
 export default function ChatInterface() {
     const { messages, input, handleInputChange, handleSubmit, isLoading } = useChat({
-        api: "/api/chat"
+        api: "/api/playground"
     })
 
     const messagesEndRef = useRef<HTMLDivElement>(null)
