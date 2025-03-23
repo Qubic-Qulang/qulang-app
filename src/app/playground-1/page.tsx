@@ -5,7 +5,7 @@ import { useState, useRef, useEffect } from "react"
 import { Send } from "lucide-react"
 
 export default function ChatInterface() {
-    const { messages, input, handleInputChange, handleSubmit, isLoading } = useChat()
+    const { messages, input, handleInputChange, handleSubmit, isLoading } = useChat({api: "http://46.17.103.110:3001/api/chat"})
 
     const messagesEndRef = useRef<HTMLDivElement>(null)
     const [scrolled, setScrolled] = useState(false)

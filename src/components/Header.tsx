@@ -24,11 +24,14 @@ export default function Header() {
                 <img src="logo_white.svg" alt="QuLang logo" className="h-14 w-auto" />
                 <h1 className="text-2xl font-stretch-extra-expanded pr-10">QuLang</h1>
             </Link>
+            <Link href="/" className="flex items-center">
+                <h1 className="text-xl font-thin text-gray-300 hover:text-white transition-all">Marketplace</h1>
+            </Link>
             <Link href="/playground" className="flex items-center">
                 <h1 className="text-xl font-thin text-gray-300 hover:text-white transition-all">Playground</h1>
             </Link>
             <Link href="/provider" className="flex items-center">
-                <h1 className="text-xl font-thin text-gray-300 hover:text-white transition-all">Provider-Portal</h1>
+                <h1 className="text-xl font-thin text-gray-300 hover:text-white transition-all">Provider Portal</h1>
             </Link>
             <HeaderConnector />
         </div>

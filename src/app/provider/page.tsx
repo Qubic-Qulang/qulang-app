@@ -142,7 +142,8 @@ export default function UpdateProvider() {
                         onClose={() => setShowConfirmModal(false)}
                         tx={{
                           title: "Update Provider Settings",
-                          details: `Price per input: ${priceInput}, Price per output: ${priceOutput}, Burn rate: ${burnRate}`
+                          details: `Price per input: ${priceInput}, Price per output: ${priceOutput}, Burn rate: ${burnRate}`,
+                          amount: 0
                         }}
                         onConfirm={confirmUpdate}
                         onTransactionComplete={handleTransactionComplete}

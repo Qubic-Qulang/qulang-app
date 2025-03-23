@@ -100,7 +100,7 @@ export default function Home() {
                                                 className="mt-6 w-full py-2 px-4 bg-primary-50 hover:bg-primary-70 transition-colors text-black cursor-pointer duration-200"
                                                 onClick={() => router.push(`/playground?ID=${item.wallet_identity}`)}
                                             >
-                                                Connect
+                                                Try in playground
                                             </button>
                                         </div>
                                     </div>
