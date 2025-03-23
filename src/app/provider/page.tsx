@@ -41,7 +41,7 @@ export default function UpdateProvider() {
   }, [walletPublicIdentity]);
 
   // Quand on clique sur "Update Provider", on affiche la modale de confirmation
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: any) => {
     e.preventDefault();
     // Ici tu pourrais ajouter de la validation
     setShowConfirmModal(true);
@@ -112,32 +112,23 @@ export default function UpdateProvider() {
                       <div>
                         <label className="block mb-1">Price per input token:</label>
                         <InputNumbers
-                            type="number"
-                            value={priceInput}
-                            onChange={(e) => setPriceInput(e.target.value)}
-                            placeholder="Price per input token"
-                            className="w-full p-4 bg-gray-80 border border-gray-70 text-white placeholder-gray-500"
-                        />
+                            onChange={(e) => setPriceInput(e)}
+                            placeholder="Price per input token" id={""}
+                            labelComponent={undefined}                        />
                       </div>
                       <div>
                         <label className="block mb-1">Price per output token:</label>
                         <InputNumbers
-                            type="number"
-                            value={priceOutput}
-                            onChange={(e) => setPriceOutput(e.target.value)}
-                            placeholder="Price per output token"
-                            className="w-full p-4 bg-gray-80 border border-gray-70 text-white placeholder-gray-500"
-                        />
+                            onChange={(e) => setPriceOutput(e)}
+                            placeholder="Price per output token" id={""}
+                            labelComponent={undefined}                        />
                       </div>
                       <div>
                         <label className="block mb-1">Burn rate (int / 10000):</label>
                         <InputNumbers
-                            type="number"
-                            value={burnRate}
-                            onChange={(e) => setBurnRate(e.target.value)}
-                            placeholder="Burn rate (int / 10000)"
-                            className="w-full p-4 bg-gray-80 border border-gray-70 text-white placeholder-gray-500"
-                        />
+                            onChange={(e) => setBurnRate(e)}
+                            placeholder="Burn rate (int / 10000)" id={""}
+                            labelComponent={undefined}                        />
                       </div>
                       <button
                           type="submit"
