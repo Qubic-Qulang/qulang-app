@@ -58,12 +58,49 @@ export async function getProviders() {
 }
 
 export async function createProvider(providerData) {
-  const { model_name, endpoint_getstatus, endpoint_getname, endpoint_inference, ranking, wallet_identity, burn_rate, price_io } = providerData;
+  const {
+    model_name,
+    endpoint_getstatus,
+    endpoint_getname,
+    endpoint_inference,
+    ranking,
+    wallet_identity,
+    burn_rate,
+    price_io
+  } = providerData;
   const result = await pool.query(
     `INSERT INTO providers 
      (model_name, endpoint_getstatus, endpoint_getname, endpoint_inference, ranking, wallet_identity, burn_rate, price_io) 
      VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *`,
     [model_name, endpoint_getstatus, endpoint_getname, endpoint_inference, ranking, wallet_identity, burn_rate, price_io]
+  );
+  return result.rows[0];
+}
+
+export async function updateProvider(provider_id, providerData) {
+  const {
+    model_name,
+    endpoint_getstatus,
+    endpoint_getname,
+    endpoint_inference,
+    ranking,
+    wallet_identity,
+    burn_rate,
+    price_io
+  } = providerData;
+  const result = await pool.query(
+    `UPDATE providers
+     SET model_name = $1,
+         endpoint_getstatus = $2,
+         endpoint_getname = $3,
+         endpoint_inference = $4,
+         ranking = $5,
+         wallet_identity = $6,
+         burn_rate = $7,
+         price_io = $8
+     WHERE provider_id = $9
+     RETURNING *`,
+    [model_name, endpoint_getstatus, endpoint_getname, endpoint_inference, ranking, wallet_identity, burn_rate, price_io, provider_id]
   );
   return result.rows[0];
 }
@@ -75,6 +112,23 @@ export async function recordTransaction(transactionData) {
      (user_identity, provider_id, tokens_used, total_cost, burn_amount, net_amount) 
      VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`,
     [user_identity, provider_id, tokens_used, total_cost, burn_amount, net_amount]
+  );
+  return result.rows[0];
+}
+
+export async function updateTransaction(transaction_id, transactionData) {
+  const { user_identity, provider_id, tokens_used, total_cost, burn_amount, net_amount } = transactionData;
+  const result = await pool.query(
+    `UPDATE transactions
+     SET user_identity = $1,
+         provider_id = $2,
+         tokens_used = $3,
+         total_cost = $4,
+         burn_amount = $5,
+         net_amount = $6
+     WHERE id = $7
+     RETURNING *`,
+    [user_identity, provider_id, tokens_used, total_cost, burn_amount, net_amount, transaction_id]
   );
   return result.rows[0];
 }
