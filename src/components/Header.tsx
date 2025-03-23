@@ -25,10 +25,10 @@ export default function Header() {
                 <h1 className="text-2xl font-stretch-extra-expanded pr-10">QuLang</h1>
             </Link>
             <Link href="/playground" className="flex items-center">
-                <h1 className="text-xl font-thin text-gray-300 hover:text-white transition-all">playground</h1>
+                <h1 className="text-xl font-thin text-gray-300 hover:text-white transition-all">Playground</h1>
             </Link>
             <Link href="/marketplace" className="flex items-center">
-                <h1 className="text-xl font-thin text-gray-300 hover:text-white transition-all">marketplace</h1>
+                <h1 className="text-xl font-thin text-gray-300 hover:text-white transition-all">Marketplace</h1>
             </Link>
             <Link href="/provider" className="flex items-center">
                 <h1 className="text-xl font-thin text-gray-300 hover:text-white transition-all">Provider-Portal</h1>
