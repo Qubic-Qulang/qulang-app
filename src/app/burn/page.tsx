@@ -13,7 +13,7 @@ export default function BurnPage() {
     const router = useRouter()
     const { connected, toggleConnectModal } = useQubicConnect()
     const { burn, balance } = useHM25()
-    const amountRef = useRef<HTMLInputElement>(null)
+    const amountRef = useRef<typeof InputNumbers>(null)
     const [amount, setAmount] = useState('')
     const [showConfirmModal, setShowConfirmModal] = useState(false)
 
@@ -31,7 +31,7 @@ export default function BurnPage() {
         )
     }
 
-    const handleValidate = () => amountRef.current.validate()
+    const handleValidate = () => amountRef.current!.validate()
     const handleSubmit = async () => {
         if (!handleValidate()) return
         setShowConfirmModal(true)

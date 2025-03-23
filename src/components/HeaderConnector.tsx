@@ -19,37 +19,14 @@ export default function HeaderConnector() {
                 className="absolute right-12 flex gap-2 items-center"
                 onClick={toggleConnectModal}
             >
-                {connected ? (
-                    <div>
+                <div className="bg-primary-50 px-3 py-2 text-black cursor-pointer">
+                    {connected ? (
                         <span className="font-mono">{truncateMiddle(walletPublicIdentity, 40)}</span>
-                        {/* Desktop View
-                        <div className="hidden md:block">
-                            <div className="flex items-center gap-2 text-white">
-                                <img src="lock.svg" alt="Lock icon" className="w-5 h-5"/>
-                                <span className="font-space text-[16px]">Lock Wallet</span>
-                            </div>
-                            {balance != null && (
-                                <div
-                                    className="text-white mt-1 text-sm cursor-pointer"
-                                    onClick={handleBalanceClick}
-                                    title="Click to refresh balance"
-                                >
-                                    Balance: {formatQubicAmount(balance)} QUBIC
-                                </div>
-                            )}
-                        </div>*/}
-                    </div>
-                ) : (
-                    <>
-                        {/* Desktop View */}
-                        <span className="hidden md:block font-space text-[16px] text-white">
-                            Unlock Wallet
-                        </span>
-
-                        {/* Mobile View */}
-                        <img src="unlocked.svg" alt="unlocked"/>
-                    </>
-                )}
+                        ) : (
+                            <span className="font-mono">Connect wallet</span>
+                        )
+                    }
+                </div>
             </div>
 
             <ConnectModal
