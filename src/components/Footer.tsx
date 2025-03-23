@@ -9,6 +9,7 @@ export default function Footer() {
             <div
                 className="mt-auto px-5 bg-black sm:px-20 md:px-100 py-16 flex flex-col sm:flex-row items-center sm:justify-between sm:items-end gap-10">
                 <div className="flex gap-2">
+
                     <span className="text-gray-5000 text-12 font-space text-gray-500">
                         powered by
                     </span>
