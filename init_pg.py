@@ -15,6 +15,8 @@ cur.execute("DROP TABLE IF EXISTS logins CASCADE;")
 cur.execute("DROP TABLE IF EXISTS users CASCADE;")
 conn.commit()
 
+print("Tables supprimées avec succès !")
+
 # Créer la table users : seul le champ "identity" (clé primaire) est non nul.
 cur.execute("""
 CREATE TABLE IF NOT EXISTS users (
@@ -69,3 +71,4 @@ conn.commit()
 cur.close()
 conn.close()
 
+print("Tables créées avec succès !")
