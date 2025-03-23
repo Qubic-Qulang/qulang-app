@@ -22,6 +22,8 @@ export const PROC_TOPUP = 1
 export const PROC_WITHDRAW = 2
 
 export const FUNC_GET_STATS = 1
+export const PROC_UPDATE_PROVIDER = 3
+export const PROC_REQUEST = 4
 
 export async function buildTopUpTx(qHelper, sourcePublicKey, tick, amount) {
     const finalTick = tick + TICK_OFFSET
@@ -70,6 +72,47 @@ export async function buildWithdrawTx(qHelper, sourcePublicKey, tick, amount) {
     return tx
 }
 
+
+export async function buildUpdateProviderTx(qHelper, sourcePublicKey, tick, priceInput, priceOutput, burnRate, balance) {
+    const finalTick = tick + TICK_OFFSET
+    const INPUT_SIZE = 32
+    const TX_SIZE = qHelper.TRANSACTION_SIZE + INPUT_SIZE
+    const tx = new Uint8Array(TX_SIZE).fill(0)
+    const dv = new DataView(tx.buffer)
+
+    let offset = 0
+    tx.set(sourcePublicKey, offset)
+    offset += qHelper.PUBLIC_KEY_LENGTH
+    tx[offset] = HM25_CONTRACT_INDEX
+    offset += qHelper.PUBLIC_KEY_LENGTH
+    dv.setBigInt64(offset, BigInt(0), true)
+    offset += 8
+    dv.setUint32(offset, finalTick, true)
+    offset += 4
+    dv.setUint16(offset, PROC_UPDATE_PROVIDER, true)
+    offset += 2
+    dv.setUint16(offset, INPUT_SIZE, true)
+    offset += 2
+    dv.setBigInt64(offset, BigInt(priceInput), true)
+    offset += 8
+    dv.setBigInt64(offset, BigInt(priceOutput), true)
+    offset += 8
+    dv.setBigInt64(offset, BigInt(burnRate), true)
+    offset += 8
+    dv.setBigInt64(offset, BigInt(balance), true)
+    return tx
+}
+
+export async function buildRequestTx(qHelper, sourcePublicKey, tick, token_input, token_output, user_id, provider_id)
+{
+    const finalTick = tick + TICK_OFFSET
+    const INPUT_SIZE = 32
+    const TX_SIZE = qHelper.TRANSACTION_SIZE + INPUT_SIZE
+    const tx = new Uint8Array(TX_SIZE).fill(0)
+    const dv = new DataView(tx.buffer)
+
+    qHelper.getIdentityBytes()
+}
 
 export async function fetchHM25Stats(httpEndpoint) {
     const queryData = makeJsonData(HM25_CONTRACT_INDEX, FUNC_GET_STATS, 0, '')
