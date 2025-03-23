@@ -1,0 +1,16 @@
+name: Deploy Qulang App
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Rebuild and deploy Docker container
+        run: |
+          echo "tototo" | sudo -S bash -c "cd /root/qulang-app && docker-compose down && docker-compose up -d --build"
