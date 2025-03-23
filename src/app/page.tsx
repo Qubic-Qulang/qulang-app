@@ -58,17 +58,7 @@ export default function Home() {
                         </button>
                     </div>) : (
                         <div className="mt-20 px-10 flex flex-col items-center">
-                            <h2 className="text-2xl text-white mb-6 mt-6">QuLang Actions</h2>
-                            <div className="flex gap-4">
-                                <button
-                                    className="bg-primary-40 p-3 text-black rounded disabled:bg-gray-400 disabled:cursor-not-allowed"
-                                    onClick={() => router.push('/echo')}
-                                    disabled={isDisabled}
-                                    title={isDisabled ? 'Insufficient balance to echo coins.' : ''}
-                                >
-                                    Echo Coin
-                                </button>
-                            </div>
+                            
                         </div>
                     )
                 }
