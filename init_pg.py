@@ -35,8 +35,7 @@ CREATE TABLE IF NOT EXISTS providers (
     ranking INTEGER NULL,
     wallet_identity VARCHAR(255) NULL,
     burn_rate NUMERIC(5,2) NULL,
-    price_io NUMERIC(10,2) NULL,
-    CONSTRAINT fk_wallet_identity FOREIGN KEY (wallet_identity) REFERENCES users(identity)
+    price_io NUMERIC(10,2) NULL
 );
 """)
 
@@ -50,9 +49,7 @@ CREATE TABLE IF NOT EXISTS transactions (
     total_cost NUMERIC(10,2) NULL,
     burn_amount NUMERIC(10,2) NULL,
     net_amount NUMERIC(10,2) NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    CONSTRAINT fk_user_identity FOREIGN KEY (user_identity) REFERENCES users(identity),
-    CONSTRAINT fk_provider_id FOREIGN KEY (provider_id) REFERENCES providers(provider_id)
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 """)
 
@@ -62,8 +59,7 @@ CREATE TABLE IF NOT EXISTS logins (
     identity VARCHAR(255) PRIMARY KEY,
     username VARCHAR(255) NULL,
     password VARCHAR(255) NULL,
-    last_login TIMESTAMP NULL,
-    CONSTRAINT fk_login_identity FOREIGN KEY (identity) REFERENCES users(identity)
+    last_login TIMESTAMP NULL
 );
 """)
 
