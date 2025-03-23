@@ -68,18 +68,6 @@ export default function Home() {
                                 >
                                     Echo Coin
                                 </button>
-                                <button
-                                    className="bg-primary-40 p-3 text-black rounded disabled:bg-gray-400 disabled:cursor-not-allowed"
-                                    onClick={() => router.push('/burn')}
-                                    disabled={isDisabled}
-                                    title={isDisabled ? 'Insufficient balance to burn coins.' : ''}
-                                >
-                                    Burn Coin
-                                </button>
-                            </div>
-                            <div className="mt-8 p-4 bg-gray-800 rounded-lg border border-gray-700 text-white">
-                                <p><strong>Number of Echos:</strong> {state.stats.numberOfEchoCalls.toString()}</p>
-                                <p><strong>Number of Burns:</strong> {state.stats.numberOfBurnCalls.toString()}</p>
                             </div>
                         </div>
                     )
