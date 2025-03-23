@@ -65,8 +65,8 @@ async function getSnaps(provider) {
             method: "wallet_getSnaps"
         })
         return snaps
-    } catch (error) {
-        console.error("[getSnaps] Error:", error)
+    } catch (err ) {
+        console.error("[getSnaps] Error:", err)
         return undefined
     }
 }
