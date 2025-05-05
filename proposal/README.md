@@ -1,17 +1,17 @@
 ![banner](../qulang-banner-rounded.png)
 # Qulang - Decentralized AI Model Marketplace on Qubic Blockchain
 
-- [Introduction](#1-introduction)
-- [Overview and Technical Details](#2-overview-and-technical-details)
-- [Core Features and Benefits](#3-core-features-and-benefits)
-- [Use Cases and Examples](#4-use-cases-and-examples)
-- [Development Roadmap](#5-development-roadmap)
-- [Contributions and Community Engagement](#6-contribution-and-community-engagement)
-- [Documentation and Maintenance](#7-documentation-and-maintenance)
-- [Marketing Strategy](#-marketing-strategy)
-- [Budget and Milestones](#-budget-and-milestones)
-- [Team](#-team)
-- [Conclusion](#8-conclusion)
+- [1. Introduction](#1-introduction)  
+- [2. Overview and Technical Details](#2-overview-and-technical-details)  
+- [3. Core Features and Benefits](#3-core-features-and-benefits)  
+- [4. Use Cases and Examples](#4-use-cases-and-examples)  
+- [5. Development Roadmap](#5-development-roadmap)  
+- [6. Contribution and Community Engagement](#6-contribution-and-community-engagement)  
+- [7. Documentation and Maintenance](#7-documentation-and-maintenance)  
+- [8. Marketing Strategy](#8-marketing-strategy)  
+- [9. Budget and Milestones](#9-budget-and-milestones)  
+- [10. Team](#10-team)  
+- [11. Conclusion](#11-conclusion)
 
 ## 1. **Introduction**
 Qulang is an innovative decentralized marketplace built on the Qubic blockchain, specifically designed to democratize access to artificial intelligence (AI) models by seamlessly integrating blockchain-based micropayments. Leveraging the robust infrastructure of Qubic, Qulang enables individuals and organizations (Providers) to monetize their AI models through secure and transparent transactions, making sophisticated AI technologies accessible to end-users (Users) in an intuitive pay-per-use token model.
@@ -510,7 +510,7 @@ Qulang is driven by a team of experienced engineers, researchers, and entreprene
 
 ---
 
-## **8. Conclusion**
+## **11. Conclusion**
 
 Qulang represents a significant step forward in the integration of blockchain technology and artificial intelligence, creating a uniquely transparent, decentralized marketplace built specifically on the Qubic blockchain. By empowering AI model providers with direct monetization opportunities, and offering users clear, pay-per-use access to advanced AI tools, Qulang democratizes access to cutting-edge technologies.
 
