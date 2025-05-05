@@ -8,7 +8,11 @@
 - [Development Roadmap](#5-development-roadmap)
 - [Contributions and Community Engagement](#6-contribution-and-community-engagement)
 - [Documentation and Maintenance](#7-documentation-and-maintenance)
+- [Marketing Strategy](#-marketing-strategy)
+- [Budget and Milestones](#-budget-and-milestones)
+- [Team](#-team)
 - [Conclusion](#8-conclusion)
+
 ## 1. **Introduction**
 Qulang is an innovative decentralized marketplace built on the Qubic blockchain, specifically designed to democratize access to artificial intelligence (AI) models by seamlessly integrating blockchain-based micropayments. Leveraging the robust infrastructure of Qubic, Qulang enables individuals and organizations (Providers) to monetize their AI models through secure and transparent transactions, making sophisticated AI technologies accessible to end-users (Users) in an intuitive pay-per-use token model.
 
@@ -432,6 +436,79 @@ To ensure the robustness and reliability of Qulang, we commit to an active, tran
 - Empowering community members to take ownership through structured contributions, promoting decentralized responsibility, and enhancing overall platform resilience.
 
 Through meticulous documentation and proactive maintenance practices, Qulang is committed to providing a reliable, user-friendly, and continuously evolving platform, encouraging widespread adoption and sustained community engagement.
+
+## **8. Marketing Strategy**
+
+Qulang is committed to a robust marketing strategy to ensure strong visibility and adoption within the Qubic ecosystem and beyond. Our approach focuses on leveraging strategic partnerships, community engagement, and targeted outreach to maximize impact.
+To ensure strong visibility and adoption of Qulang within and beyond the Qubic ecosystem, we are leveraging key strategic partnerships and communication channels:
+
+* **Media Partnerships**:
+  We have established collaborations with major French crypto media such as **CoinTribune** and **Cointelegraph France**, offering high-impact visibility for product launches and updates.
+
+* **Key Opinion Leaders (KOLs)**:
+  We're working with several French Twitter-based KOLs in the crypto and AI sectors to drive awareness and generate community engagement.
+
+* **Qubic Ecosystem Channels**:
+  We'll leverage existing Qubic communication tools:
+
+  * Official announcements via **Qubic Discord**
+  * Support and reposts through **Qubic's X.com (formerly Twitter)** accounts
+  * Participation in **community events and developer calls**
+
+This multi-pronged strategy ensures Qulang reaches a wide, relevant, and engaged audience—particularly developers, early adopters, and investors in the Qubic ecosystem.
+
+
+## **9. Budget and Milestones**
+
+The Qulang development is planned in **two phases**, the first being funded by our **\$10K Hackathon prize**, and the second requiring **\$25K in additional funding** post launch to scale the project further.
+
+
+### **Phase 1 — Hackathon-Funded Milestones (\$10K)**
+
+| Milestone       | % of Budget | Amount  | Objective                                                                                                                                                  |
+| --------------- | ----------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Milestone 1** | 40%         | \$4,000 | Finalize smart contract development and Qubic integration.                                                                                                 |
+| **Milestone 2** | 30%         | \$3,000 | Complete initial AI module integration and basic functional AI model usage.                                                                                |
+| **Milestone 3** | 30%         | \$3,000 | Launch basic marketing (media/KOLs), deploy the app in production, and conduct a smart contract audit via **RD Company**, who offered a reduced audit fee. |
+
+### **Phase 2 — Additional Funding (\$25K)** post launch (Grant, private investors and IPO)
+
+| Milestone                         | Objective                                                                                                                           |
+| --------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| **Scalable V2**                   | Expand development team and architecture to enable real-time onboarding of AI model providers without requiring code-level changes. |
+| **Multi-Model API Compatibility** | Support a wider range of AI model APIs beyond the current Vercel stream format.                                                     |
+| **Operational Scaling**           | Strengthen infrastructure, UI/UX, and allow seamless provider onboarding, targeting real-world adoption and scalability.            |
+
+## **10. Team**
+
+Qulang is driven by a team of experienced engineers, researchers, and entrepreneurs with strong backgrounds in AI, Web3, and cybersecurity:
+
+### **Rayan Drissi**
+
+[LinkedIn](https://fr.linkedin.com/in/rayan-drissi-1b66421b3)
+
+* CTO of multiple crypto projects (including one with a \$90M market cap).
+* Founder of a dev agency with 10 engineers specializing in Web3, AI, and full-stack development.
+* Graduate of a top 3 CS school in France.
+* Selected as a "Pépite de France" entrepreneur for exceptional student-led innovation.
+
+### **Sabir Mohamed**
+
+[LinkedIn](https://fr.linkedin.com/in/sabir-mba)
+
+* Graduate in Cybersecurity & Systems Engineering with an AI minor.
+* Research experience in smart contract security and cloud data protection.
+* Focuses on infrastructure optimization, Web3 architecture, and data security.
+
+### **Rémy Siahaan**
+
+[LinkedIn](https://fr.linkedin.com/in/remy-siahaan/en)
+
+* Graduate in ML, Statistics & Finance from ENSAE Paris (Institut Polytechnique de Paris).
+* Winner of several top-tier AI hackathons (Hi!Paris, SiaPartners, InnovHer, ACPR/Bank of France).
+* Experience as Data Scientist at the French Central Bank and Research Assistant at CREST (economics/statistics lab).
+
+---
 
 ## **8. Conclusion**
 
