@@ -417,15 +417,16 @@ The proposal submitted here focuses exclusively on Phase 1 development milestone
 
 ### **Phase 1 — Hackathon-Funded Milestones (\$10K)**
 
-| Milestone       | Delivery Date                      | % of Budget | Amount  | Objective                                                                                                                                                                           |
-| --------------- | ---------------------------------- | ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Milestone 0** | Upon proposal acceptance (Q2 2025) | 20%         | \$2,000 | Initial disbursement upon proposal submission to the Qubic incubation committee (MadHack25 3rd prize). Funds will be used to bootstrap initial project setup and preparatory tasks. |
-| **Milestone 1** | June 30, 2025                      | 30%         | \$3,000 | Finalize smart contract development, Qubic integration and Security audit Setup initiated                                                                                           |
-| **Milestone 2** | July 31, 2025                      | 20%         | \$2,000 | Complete initial AI module integration and Functional prototype allowing basic AI model usage via marketplace frontend                                                              |
-| **Milestone 3** | August 31, 2025                    | 30%         | \$3,000 | Launch basic marketing (media/KOLs), deploy the app in production, and conduct a smart contract audit via **RD Company**, who offered a reduced audit fee.                          |  
+| Milestone       | Delivery Date                      | % Budget | Amount  | Objectives/Deliverables                                                                                                                                                                                                              |
+| --------------- | ---------------------------------- | -------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **Milestone 0** | Upon proposal acceptance (Q2 2025) | 20%      | \$2,000 | Initial disbursement upon proposal submission to the Qubic incubation committee (**MadHack25 3rd prize**). Funds will be used to bootstrap initial project setup and preparatory tasks.                                              |
+| **Milestone 1** | June 30, 2025                      | 30%      | \$3,000 | - Finalize smart contract development<br>- Full integration with Qubic blockchain<br>- Security audit setup initiated                                                                                                                |
+| **Milestone 2** | July 31, 2025                      | 25%      | \$2,500 | - Complete initial AI module integration<br>- Functional prototype allowing basic AI model usage via marketplace frontend                                                                                                            |
+| **Milestone 3** | August 31, 2025                    | 25%      | \$2,500 | - Official deployment of initial version to production environment<br>- Execution of a comprehensive smart contract security audit by **RD Company** (reduced audit fee)<br>- Initial marketing outreach via media partners and KOLs |
 
 
-**Total: ** $10,000 (including initial disbursement of Milestone 0)
+
+**Total:** $10,000 (including initial disbursement of Milestone 0)
   
 
 ### **Phase 2 — Additional Funding (\$25K)** post launch (Grant, private investors and IPO) - Out-of-Scope
