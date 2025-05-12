@@ -235,10 +235,11 @@ Bob runs a small marketing agency and occasionally requires advanced AI models f
 
 
 ## **5. Development Roadmap**
-Qulang’s journey towards a fully operational decentralized AI marketplace has already begun, with an existing Proof-of-Concept (PoC) providing a foundational demonstration of key functionalities. This roadmap outlines our plan for continued refinement, enhancement, and eventual full-scale deployment, transparently highlighting current limitations and future improvements.
+The Qulang development roadmap aligns directly with Phase 1 funding milestones provided in the budget (Section 9), ensuring transparency and clarity in deliverables and timeframes.  
 
 ### **Current Status: Proof-of-Concept (PoC)**
-At present, Qulang has an initial PoC demonstrating critical components:
+At present, Qulang has an operational Proof-of-Concept demonstrating fundamental marketplace functionalities, albeit requiring further refinement and scalability improvements.  
+Here is the current done work :  
 
 - **Smart Contract Integration:**  
 Basic smart contracts currently handle core marketplace interactions, such as token transactions, model endpoint registrations, and basic token burn mechanics. While operational, they require significant refactoring and enhancement for scalability and security.
@@ -250,78 +251,24 @@ An initial frontend interface built with Next.js exists but currently provides o
 AI models can currently be provided and accessed through the marketplace, although integration and the end-user experience remain limited.
 
 ### **Planned Development Milestones:**
-#### **Phase 1: Smart Contract Refactoring and Enhancement**
-- **Timeframe:** Q2 2025
+#### **Phase 1: Roadmap (Funded by MadHack25 Prize)  
 
-- **Goals:**
-
-  - Refactor existing smart contracts for improved efficiency and security.
-
-  - Enhance smart contract capabilities for better configurability (provider-defined burn rates, dynamic pricing).
-
-  - Implement extensive smart contract audits for security and reliability.
+| Roadmap Milestone                       | Timeline        | Related Budget Milestone | Key Objectives & Activities                                                                                                                                             |
+| --------------------------------------- | --------------- | ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Project Initialization & Setup**      | Q2 2025         | Milestone 0 (\$2,000)    | - Project environment setup<br>- Smart contract groundwork                                                                                                              |
+| **Smart Contract Enhancement**          | June 30, 2025   | Milestone 1 (\$2,400)    | - Complete robust smart contracts<br>- Full blockchain integration<br>- Security audit initiation                                                                       |
+| **AI Module & Marketplace Integration** | July 31, 2025   | Milestone 2 (\$2,000)    | - Integrate functional AI modules<br>- Implement core frontend/backend functionalities                                                                                  |
+| **Production Launch & Security Audit**  | August 31, 2025 | Milestone 3 (\$2,000)    | - Public deployment of marketplace V1<br>- Comprehensive smart contract audit completion by RD Company<br>- Initiate initial marketing efforts via established partners |
 
 
-#### **Phase 2: Frontend and User Experience Revamp**
-- **Timeframe:** Late Q2 - Early Q3 2025
+#### **Phase 2: Roadmap (Out-of-Scope)  
+These items require future funding and are explicitly outside the scope of this current incubation proposal:  
 
-- **Goals:**
+- **Q4 2025:** Scalable V2 architecture development, real-time onboarding systems.
 
-  - Redesign the frontend application using Next.js, focusing on user experience and responsiveness.
+- **Q4 2025:** Expanded compatibility with diverse AI model APIs.
 
-  - Implement a more intuitive user interface for both providers and users, enhancing usability and accessibility.
-
-  - Integrate advanced features such as real-time data updates, improved search capabilities, and enhanced model browsing.
-
-  - Develop comprehensive documentation for users and providers to facilitate onboarding and usage.
-
-
-
-    
-#### **Phase 3: Backend Optimization and Security Improvements**
-- **Timeframe:** Q3 2025
-
-- **Goals:**
-
-  - Refactor backend logic for improved performance and scalability.
-
-  - Enhance API security and backend data encryption (TLS/SSL) standards.
-
-  - Optimize backend infrastructure performance, reliability, and scalability.
-
-  - Improve token calculation algorithms for greater precision, efficiency, and transparency.
-
-
-#### **Phase 4: Marketplace Ranking and Burn-Rate Mechanism**
-- **Timeframe:** Q3 - Early Q4 2025
-
-- **Goals:**
-
-  - Fully implement and rigorously test the provider-driven token burn rate tier system.
-
-  - Integrate dynamic marketplace ranking influenced by token burn rates, encouraging competitive ecosystem contributions.
-
-#### **Phase 5: Beta Release and Community Feedback**
-- **Timeframe:** Q4 2025
-
-- **Goals:**
-
-  - Publicly release a Beta version for extensive user testing.
-
-  - Collect user and provider feedback to inform final refinements and improvements.
-
-  - Strengthen community engagement and expand marketplace visibility.
-
-#### **Phase 6: Official Launch and Expansion**
-- **Timeframe:** Q1 2026
-
-- **Goals:**
-
-  - Launch the fully operational Qulang marketplace with comprehensive documentation.
-
-  - Initiate active onboarding of providers and promotion to potential users.
-  - Explore additional features based on community feedback and marketplace demands.
-
+- **Q1 2026:** Infrastructure optimization, extensive marketing campaigns, and operational scaling.  
 
 ## **6. Contribution and Community Engagement**
 
@@ -460,24 +407,36 @@ This multi-pronged strategy ensures Qulang reaches a wide, relevant, and engaged
 
 ## **9. Budget and Milestones**
 
-The Qulang development is planned in **two phases**, the first being funded by our **\$10K Hackathon prize**, and the second requiring **\$25K in additional funding** post launch to scale the project further.
+The Qulang development will occur in two clearly defined funding phases. The first phase will be fully financed by our **$10K Hackathon prize** from our 3rd-place finish at the **MadHack25 Qubic Hackathon in Madrid 2025**, including an initial disbursement (**Milestone 0*).   
+The second phase requires an additional funding of **$25K** post-launch (through grants, private investors, or potential IPO) to scale and extend the project's capabilities further.  
+
+**Out-of-Scope Notice:**  
+Phase 2 (**Additional Funding – $25K**) is currently out of the scope of this proposal and will be pursued separately after completing Phase 1.  
+The proposal submitted here focuses exclusively on Phase 1 development milestones, funded entirely by the hackathon prize.
 
 
 ### **Phase 1 — Hackathon-Funded Milestones (\$10K)**
 
-| Milestone       | % of Budget | Amount  | Objective                                                                                                                                                  |
-| --------------- | ----------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Milestone 1** | 40%         | \$4,000 | Finalize smart contract development and Qubic integration.                                                                                                 |
-| **Milestone 2** | 30%         | \$3,000 | Complete initial AI module integration and basic functional AI model usage.                                                                                |
-| **Milestone 3** | 30%         | \$3,000 | Launch basic marketing (media/KOLs), deploy the app in production, and conduct a smart contract audit via **RD Company**, who offered a reduced audit fee. |
+| Milestone       | Delivery Date                      | % of Budget | Amount  | Objective                                                                                                                                                                           |
+| --------------- | ---------------------------------- | ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Milestone 0** | Upon proposal acceptance (Q2 2025) | 20%         | \$2,000 | Initial disbursement upon proposal submission to the Qubic incubation committee (MadHack25 3rd prize). Funds will be used to bootstrap initial project setup and preparatory tasks. |
+| **Milestone 1** | June 30, 2025                      | 30%         | \$3,000 | Finalize smart contract development, Qubic integration and Security audit Setup initiated                                                                                           |
+| **Milestone 2** | July 31, 2025                      | 20%         | \$2,000 | Complete initial AI module integration and Functional prototype allowing basic AI model usage via marketplace frontend                                                              |
+| **Milestone 3** | August 31, 2025                    | 30%         | \$3,000 | Launch basic marketing (media/KOLs), deploy the app in production, and conduct a smart contract audit via **RD Company**, who offered a reduced audit fee.                          |  
 
-### **Phase 2 — Additional Funding (\$25K)** post launch (Grant, private investors and IPO)
 
-| Milestone                         | Objective                                                                                                                           |
-| --------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
-| **Scalable V2**                   | Expand development team and architecture to enable real-time onboarding of AI model providers without requiring code-level changes. |
-| **Multi-Model API Compatibility** | Support a wider range of AI model APIs beyond the current Vercel stream format.                                                     |
-| **Operational Scaling**           | Strengthen infrastructure, UI/UX, and allow seamless provider onboarding, targeting real-world adoption and scalability.            |
+**Total: ** $10,000 (including initial disbursement of Milestone 0)
+  
+
+### **Phase 2 — Additional Funding (\$25K)** post launch (Grant, private investors and IPO) - Out-of-Scope
+
+The following items are planned enhancements for subsequent phases. They are explicitly excluded from the current funding request, to be pursued separately upon successful completion of Phase 1 and subject to securing additional funding sources.
+
+| Milestone                         | Planned Timeframe | Objectives/Deliverables                                                                                       |
+| --------------------------------- | ----------------- | ------------------------------------------------------------------------------------------------------------- |
+| **Scalable V2 Development**       | Q4 2025           | - Expand development team and architecture for real-time onboarding of AI providers without code intervention |
+| **Multi-Model API Compatibility** | Q4 2025           | - Enhance backend compatibility with various AI model API formats beyond current Vercel streams               |
+| **Operational Scaling & Growth**  | Q1 2026           | - Infrastructure upgrade, UI/UX refinements, marketing expansion, real-world onboarding of diverse providers  |
 
 ## **10. Team**
 
