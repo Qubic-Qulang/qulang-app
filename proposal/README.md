@@ -1,3 +1,4 @@
+
 ![banner](../qulang-banner-rounded.png)
 # Qulang - Decentralized AI Model Marketplace on Qubic Blockchain
 
@@ -14,6 +15,21 @@
 - [11. Conclusion](#11-conclusion)
 
 ## 1. **Introduction**
+
+Qulang is an innovative decentralized marketplace built on the Qubic blockchain, allowing easy access to AI models through tokenized micropayments.  
+
+Qulang is a decentralized AI model marketplace built on the Qubic blockchain, allowing:  
+- **Providers** to monetize AI models in real-time without intermediaries, using transparent on-chain micropayments and configurable token burn rates.  
+- **Users** to select from a wide variety of models, paying only for actual usage while maintaining 100% blockchain-based traceability.
+
+
+### 1.1 Problem Statement  
+
+| Stakeholders | Current Challenges | Qulang's Solution |
+|--------------|--------------------|-------------------|
+| **Providers** | • No decentralized platform for real-time blockchain-based payments<br>• High fees and transparency issues with centralized marketplaces | Qubic smart contracts → instant, transparent settlements without hidden fees |
+| **Users** | • Limited crypto-native services with true pay-per-use<br>• Limited selection of genuinely decentralized AI models | Comprehensive marketplace, broad AI selection, and token-based billing per usage |
+
 Qulang is an innovative decentralized marketplace built on the Qubic blockchain, specifically designed to democratize access to artificial intelligence (AI) models by seamlessly integrating blockchain-based micropayments. Leveraging the robust infrastructure of Qubic, Qulang enables individuals and organizations (Providers) to monetize their AI models through secure and transparent transactions, making sophisticated AI technologies accessible to end-users (Users) in an intuitive pay-per-use token model.
 
 In the growing ecosystem of AI services, accessibility and transparency remain significant challenges. Traditional marketplaces often lack flexibility in pricing and transparency in usage tracking. Qulang addresses these issues by adopting a decentralized and token-based transactional model, powered entirely by Qubic blockchain smart contracts. Each transaction is tokenized, facilitating fair and clear micropayments based explicitly on the actual usage of AI models.
@@ -37,7 +53,7 @@ The architecture of Qulang comprises four main components designed to ensure sca
 All financial and transactional processes are securely managed through the Qubic blockchain. This layer ensures transparent recording and immutable storage of every transaction and token burn event, thus establishing trust and reliability within the ecosystem.
 
 **2. Smart Contracts**  
-Qulang employs custom-developed smart contracts, specifically tailored to the requirements of the marketplace, following Qubic’s blockchain standards and documentation. Smart contracts manage essential tasks, including:  
+Qulang employs custom-developed smart contracts, specifically tailored to the requirements of the marketplace, following Qubic's blockchain standards and documentation. Smart contracts manage essential tasks, including:  
 
 - Payments and settlements in Qubic tokens.
 
@@ -105,6 +121,14 @@ A detailed transaction scenario within Qulang involves the following steps:
 5. Tokens are automatically deducted from the user's account, part of which is burned according to provider-configured settings.
 6. The provider receives their token share seamlessly via blockchain smart contracts.
 
+### 2.1 Competitors  
+
+| Competitor | Market Position | Key Differences vs. Qulang |
+|------------|-----------------|----------------------------|
+| **virtuals.io** | Speculative AI-agent launchpad; each agent linked to its own meme-token | Multiple speculative memecoins vs. **single utility token QULANC**, which compensates miners; no genuine pay-per-use |
+| **OpenRouter** | SaaS aggregator (> 20 providers) with fiat/crypto payments | Centralized, focused on large cloud providers (OpenAI, AWS); lacks deflationary tokenomics and decentralization |
+| **SingularityNET / Bittensor / Ocean Market** | Various decentralized AI networks | Differ significantly in technical and economic models; Qulang specifically focuses on **plug-and-play marketplace with micropayments** |
+
 ## **3. Core Features and Benefits**
 
 Qulang introduces a comprehensive suite of features designed to maximize efficiency, transparency, and profitability in AI model sharing and usage, powered by blockchain and decentralized principles. Below are its core functionalities and the unique benefits they provide:
@@ -120,7 +144,7 @@ Qulang introduces a comprehensive suite of features designed to maximize efficie
 - **Benefit:** Providers and users achieve fair, transparent pricing, aligned directly with actual AI usage, ensuring cost-effectiveness and transparency.
 
 **3. Provider-Configurable Token Burn Rate**  
-- **Feature:** Providers can choose their own token burn rate from predefined tiers, influencing their model’s ranking and visibility on the marketplace.
+- **Feature:** Providers can choose their own token burn rate from predefined tiers, influencing their model's ranking and visibility on the marketplace.
 
 - **Benefit:** Encourages competition and engagement, rewarding providers who support a higher token burn rate with greater marketplace visibility, driving community-oriented ecosystem growth.
 
@@ -154,85 +178,15 @@ Qulang introduces a comprehensive suite of features designed to maximize efficie
 
 - **Benefit:** Ensures the platform remains responsive and performant, supporting increased user load and AI model complexity without compromising reliability or speed.
 
-## **4. Use Cases and examples**
+## **4. Use Cases and examples (Short Version)**  
 
-Qulang’s decentralized AI marketplace addresses real-world challenges faced by both AI model providers and end-users. Below are concrete scenarios demonstrating typical usage patterns and highlighting the practical advantages of Qulang.
+> **Alice (Provider)** – Deploys her LLM, sets 1 token per 1k input/output tokens, 5% burn. Revenue is instantly available, boosting visibility.
 
-### **Use Case 1: AI Model Provider Monetization**
-**Scenario:**
+> **Bob (SME User)** – Buys 10,000 tokens, spends 2,000 tokens/month on marketing content. Pays strictly per consumption, no subscriptions.
 
-Alice, an AI developer specializing in Natural Language Processing, has developed a sophisticated GPT-based language generation model. Previously, Alice faced challenges monetizing her model directly to users due to payment complexities, opaque pricing, and administrative overhead.
+> **Charlie (Competitive Provider)** – Selects 15% burn rate, rises to the top of marketplace rankings, doubling traffic in a week.
 
-**Qulang Solution:**
-
-- Alice creates a Provider account on Qulang.
-
-- She registers her AI model endpoint, specifying clearly defined usage costs per token and selects a burn rate tier to boost visibility.
-
-- Alice connects her wallet, allowing smart contracts to handle all payments automatically.
-
-**Outcome:**
-
-- Alice easily monetizes her AI model directly through transparent token payments.
-
-- Her model becomes widely accessible without intermediaries, allowing efficient revenue generation and visibility.
-
-### **Use Case 2: Pay-Per-Use AI Model for Businesses**
-**Scenario:**
-
-Bob runs a small marketing agency and occasionally requires advanced AI models for content generation and analytics but can't justify high monthly subscription fees typically demanded by centralized AI services.
-
-**Qulang Solution:**
-
-- Bob registers a User account, securely connects his wallet, and deposits Qubic tokens.
-
-- He browses the marketplace, selects Alice's GPT-based model after comparing clearly indicated prices.
-
-**Outcome:**  
-
-- Bob benefits from flexible pay-per-use access without upfront investment or recurring fees.
-
-- His business can access powerful AI capabilities cost-effectively and transparently, scaling usage up or down as required.
-
-### **Use Case 3: Competitive Marketplace Visibility**  
-**Scenario:**
-
-- Charlie, another AI model provider, wishes to maximize visibility and usage of his advanced image recognition model within the marketplace.
-
-**Qulang Solution:**
-
-- Charlie selects a higher token burn rate tier, signaling commitment to the community.
-
-- His AI model gains higher visibility, appearing prominently in the marketplace rankings due to Qulang’s incentivized burn-rate system.
-
-**Outcome:**
-
-- Charlie’s model attracts more users, increasing revenue and marketplace reputation.
-
-- His contribution to token deflation strengthens the Qubic ecosystem, benefiting all stakeholders.
-
-### **Use Case 4: Seamless Integration of Blockchain and AI**
-**Scenario:**
-
-- Dana, a technology enthusiast, aims to leverage advanced decentralized platforms to incorporate AI into blockchain applications. However, typical AI services lack blockchain compatibility.
-
-**Qulang Solution:**
-
-- Dana accesses Qulang’s decentralized AI models with built-in blockchain integration, allowing direct token payments and transaction tracking.
-
-- She integrates selected AI services seamlessly into her blockchain-based decentralized apps (dApps).
-
-**Outcome:**
-
-- Dana effectively bridges AI technology and blockchain ecosystems effortlessly.
-
-- Her applications achieve enhanced functionality with simplified integration, providing value-added services to her users.
-  
-
-    
-### **Workflow Example: Typical Transaction Flow**
-![banner](./workflow_steps.png)
-
+> **Dana (dApp Builder)** – Integrates a Qulang model using Qubic smart contracts; all interactions paid and recorded on-chain without proprietary API keys.
 
 ## **5. Development Roadmap**
 The Qulang development roadmap aligns directly with Phase 1 funding milestones provided in the budget (Section 9), ensuring transparency and clarity in deliverables and timeframes.  
@@ -292,7 +246,7 @@ We actively encourage and warmly welcome community contributions in the followin
 - Testing phases will be clearly announced on community channels, inviting structured and open-ended feedback.
 
 **3. AI Model Provisioning**  
-- AI developers are invited to list and provide their models on Qulang’s marketplace, enriching the platform’s diversity, innovation, and value.
+- AI developers are invited to list and provide their models on Qulang's marketplace, enriching the platform's diversity, innovation, and value.
 
 - Providers receive immediate visibility and fair monetization opportunities through transparent tokenized payments.
 
@@ -309,10 +263,10 @@ To facilitate active community participation and ongoing dialogue, Qulang has pl
 - Establishment of dedicated forums (Discord, Telegram, or similar platforms) for direct community interaction, announcements, issue reporting, and support.
 
 **Contributor Recognition Program**  
-- Community contributors will be publicly recognized and rewarded within the platform, showcasing their valuable contributions prominently on Qulang’s website and community channels.
+- Community contributors will be publicly recognized and rewarded within the platform, showcasing their valuable contributions prominently on Qulang's website and community channels.
 
 **Educational Resources and Webinars**  
-- Hosting periodic educational webinars and creating detailed resources to educate users on utilizing Qulang’s features effectively, understanding blockchain integrations, and optimizing AI model deployments.
+- Hosting periodic educational webinars and creating detailed resources to educate users on utilizing Qulang's features effectively, understanding blockchain integrations, and optimizing AI model deployments.
 
   
 By actively involving community members at every stage—from development and testing to deployment and expansion—Qulang seeks to build an inclusive, sustainable ecosystem that maximizes collective innovation and shared success.
@@ -347,7 +301,7 @@ Documentation includes:
 **3. Technical Documentation**  
 - In-depth coverage of:
 
-  - Qulang’s smart contract architecture and interactions.
+  - Qulang's smart contract architecture and interactions.
 
   - Backend API specifications, security protocols, and data handling procedures.
 
@@ -377,7 +331,7 @@ To ensure the robustness and reliability of Qulang, we commit to an active, tran
 - Transparent public issue tracking and prioritization via GitHub Issues or similar platforms, allowing community visibility and contributions.
 
 **4. Infrastructure Monitoring and Scalability**  
-- Continuous monitoring of backend and blockchain interactions to proactively address potential bottlenecks, ensuring Qulang’s reliability as user and model usage grows.
+- Continuous monitoring of backend and blockchain interactions to proactively address potential bottlenecks, ensuring Qulang's reliability as user and model usage grows.
 
 **5. Community-Driven Maintenance**  
 - Empowering community members to take ownership through structured contributions, promoting decentralized responsibility, and enhancing overall platform resilience.
@@ -420,7 +374,7 @@ The proposal submitted here focuses exclusively on Phase 1 development milestone
 | Milestone       | Delivery Date                      | % Budget | Amount  | Objectives/Deliverables                                                                                                                                                                                                              |
 | --------------- | ---------------------------------- | -------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | **Milestone 0** | Upon proposal acceptance (Q2 2025) | 20%      | \$2,000 | Initial disbursement upon proposal submission to the Qubic incubation committee (**MadHack25 3rd prize**). Funds will be used to bootstrap initial project setup and preparatory tasks.                                              |
-| **Milestone 1** | June 30, 2025                      | 30%      | \$3,000 | - Finalize smart contract development<br>- Full integration with Qubic blockchain<br>- Security audit setup initiated                                                                                                                |
+| **Milestone 1** | June 30, 2025                      | 30%      | \$3,000 | - Finalize smart contract development<br>- Full blockchain integration<br>- Security audit setup initiated                                                                                                                |
 | **Milestone 2** | July 31, 2025                      | 25%      | \$2,500 | - Complete initial AI module integration<br>- Functional prototype allowing basic AI model usage via marketplace frontend                                                                                                            |
 | **Milestone 3** | August 31, 2025                    | 25%      | \$2,500 | - Official deployment of initial version to production environment<br>- Execution of a comprehensive smart contract security audit by **RD Company** (reduced audit fee)<br>- Initial marketing outreach via media partners and KOLs |
 
