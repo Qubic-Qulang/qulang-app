@@ -204,26 +204,6 @@ An initial frontend interface built with Next.js exists but currently provides o
 - **AI Model Provisioning:**  
 AI models can currently be provided and accessed through the marketplace, although integration and the end-user experience remain limited.
 
-### **Planned Development Milestones:**
-#### **Phase 1: Roadmap (Funded by MadHack25 Prize)  
-
-| Roadmap Milestone                       | Timeline        | Related Budget Milestone | Key Objectives & Activities                                                                                                                                             |
-| --------------------------------------- | --------------- | ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Project Initialization & Setup**      | Q2 2025         | Milestone 0 (\$2,000)    | - Project environment setup<br>- Smart contract groundwork                                                                                                              |
-| **Smart Contract Enhancement**          | June 30, 2025   | Milestone 1 (\$2,400)    | - Complete robust smart contracts<br>- Full blockchain integration<br>- Security audit initiation                                                                       |
-| **AI Module & Marketplace Integration** | July 31, 2025   | Milestone 2 (\$2,000)    | - Integrate functional AI modules<br>- Implement core frontend/backend functionalities                                                                                  |
-| **Production Launch & Security Audit**  | August 31, 2025 | Milestone 3 (\$2,000)    | - Public deployment of marketplace V1<br>- Comprehensive smart contract audit completion by RD Company<br>- Initiate initial marketing efforts via established partners |
-
-
-#### **Phase 2: Roadmap (Out-of-Scope)  
-These items require future funding and are explicitly outside the scope of this current incubation proposal:  
-
-- **Q4 2025:** Scalable V2 architecture development, real-time onboarding systems.
-
-- **Q4 2025:** Expanded compatibility with diverse AI model APIs.
-
-- **Q1 2026:** Infrastructure optimization, extensive marketing campaigns, and operational scaling.  
-
 ## **6. Contribution and Community Engagement**
 
 Qulang strongly values community collaboration and transparency, recognizing that the long-term success and growth of the platform depend upon active participation and continuous feedback from both AI providers and users. We aim to foster an open, collaborative ecosystem that empowers the broader Qubic community.
